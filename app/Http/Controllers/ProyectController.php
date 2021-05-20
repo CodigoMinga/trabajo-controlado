@@ -18,8 +18,9 @@ class ProyectController extends Controller
 
     public function add(){
         $clients = Client::all();
+        $users = User::all();
         $proyect = new Proyect;
-        return view('proyects.form',compact('clients','proyect'));
+        return view('proyects.form',compact('clients','users','proyect'));
     }
    
     public function details($proyect_id)
