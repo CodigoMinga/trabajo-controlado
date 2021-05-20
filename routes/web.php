@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+//Login
+Route::get('/',                             'MainController@login')->name('login');
+Route::post('/checklogin',                  'MainController@checkLogin');
+Route::get('/register',                     'MainController@register');
+Route::post('/register/process',            'MainController@registerProcess');
+Route::get('/login/passwordlost',           'MainController@passwordLost');
+Route::post('/login/passwordlost/process',  'MainController@passwordLostProcess');
+
+Route::get('/login/resetpassword/{user_id}/token/{token}',            'MainController@passwordRessetToken');
+Route::post('/login/resetpassword/{user_id}/token/{token}/process',   'MainController@passwordRessetTokenProcess');
+
+
+
+
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 //Rutas CLientes
 Route::get('/clients/list','ClientController@list')->name('clients.list');
@@ -34,10 +48,12 @@ route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('pr
 route::post('/proyects/process', 'ProyectController@process');
 
 
-
-route::get('/users/list',               'UserController@list')->name('users.list');
-route::get('/users/add',                'UserController@add')->name('users.add');
-//route::get('/users/{user_id}',          'UserController@details')->name('users.details');
-//route::get('/users/{user_id}/delete',   'UserController@delete')->name('users.delete');
-//route::post('/users/process',           'UserController@process')->name('users.process');
-//route::post('/users/process',           'UserController@process')->name('users.process');
+ //USUARIOS
+ route::get('/users/list',               'UserController@list')->name('users.list');
+ route::get('/users/add',                'UserController@add')->name('users.add');
+ Route::get('/users/passwordchange',     'UserController@passwordchange');
+ route::get('/users/{user_id}',          'UserController@details')->name('users.details');
+ route::get('/users/{user_id}/delete',   'UserController@delete')->name('users.delete');
+ route::post('/users/process',           'UserController@process')->name('users.process');
+ //CAMBIAR CLAVE
+ Route::post('/users/passwordchange/process','UserController@passwordchangeProcess');
