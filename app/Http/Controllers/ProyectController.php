@@ -5,20 +5,24 @@ namespace App\Http\Controllers;
 use App\Proyect;
 use App\User;
 use App\Client;
+use App\Item;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProyectController extends Controller
 {
     public function list(){
-        $client_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        $items_id = Auth::user()->items()->pluck('item_id')->toArray();
         $proyects = Proyect::whereIn('client_id',$clients_id)->get();
         return view('proyects.list',compact('proyects'));
     }
 
     public function add(){
         $clients = Auth::user()->clients()->get();
+        $items = Auth::user()->items()->get();
         $proyect = new Proyect;
-        return view('proyects.form',compact('clients','proyect'));
+        return view('proyects.form',compact('clients','proyect','items'));
     }
    
     public function details($proyect_id)

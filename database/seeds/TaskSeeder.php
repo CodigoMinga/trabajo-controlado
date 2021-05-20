@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ClientSeeder extends Seeder
+class TaskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        
+        //
     }
 }
