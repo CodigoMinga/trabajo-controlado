@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use App\Role;
+use App\Client;
 
 class UserSeeder extends Seeder
 {
@@ -13,8 +16,6 @@ class UserSeeder extends Seeder
     {
         $roles  = Role::where('name', 'superadmin')->first();
         
-        $codigominga    = Client::where('name','CodigoMinga Bar')->first();
-
         $user = new User;
         $user->name = 'Osvaldo';
         $user->email = 'osvaldo.alvarado.dev@gmail.com';
@@ -22,7 +23,6 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user->roles()->attach($roles);
-        $user->companies()->attach($codigominga);
 
         $user = new User;
         $user->name = 'Nikotine';
@@ -30,7 +30,6 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('password');
         $user->save();
         $user->roles()->attach($roles);
-        $user->companies()->attach($codigominga);
 
         $user = new User;
         $user->name = 'programador';
@@ -38,7 +37,6 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('000000');
         $user->save();
         $user->roles()->attach($roles);
-        $user->companies()->attach($codigominga);
 
         $user = new User;
         $user->name = 'Sebastian';
@@ -46,7 +44,6 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('password');
         $user->save();
         $user->roles()->attach($roles);
-        $user->companies()->attach($codigominga);
 
         $user = new User;
         $user->name = 'Suki';
@@ -54,6 +51,5 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('password');
         $user->save();
         $user->roles()->attach($roles);
-        $user->companies()->attach($codigominga);
     }
 }

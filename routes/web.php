@@ -24,3 +24,10 @@ Route::get('/clients/{client_id}','ClientController@details')->name('clients.det
 Route::post('/clients/{client_id}/edit/process','ClientController@editprocess');
 Route::get('/clients/{client_id}/delete','ClientController@delete');
 
+
+
+route::get('/users/list',               'UserController@list')->name('users.list');
+route::get('/users/add',                'UserController@add')->name('users.add');
+//route::get('/users/{user_id}',          'UserController@details')->name('users.details');
+//route::get('/users/{user_id}/delete',   'UserController@delete')->name('users.delete');
+//route::post('/users/process',           'UserController@process')->name('users.process');
