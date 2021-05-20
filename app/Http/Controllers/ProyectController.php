@@ -3,83 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Proyect;
+use App\User;
+use App\Client;
+use App\Item;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProyectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function list(){
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        $items_id = Auth::user()->items()->pluck('item_id')->toArray();
+        $proyects = Proyect::whereIn('client_id',$clients_id)->get();
+        return view('proyects.list',compact('proyects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add(){
+        $clients = Auth::user()->clients()->get();
+        $items = Auth::user()->items()->get();
+        $proyect = new Proyect;
+        return view('proyects.form',compact('clients','proyect','items'));
+    }
+   
+    public function details($proyect_id)
     {
-        //
+        $clients = Auth::user()->clients()->get();
+        $proyect = Proyect::find($proyect_id);
+        return view('proyects.form',compact('clients','proyect'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function process(Request $request)
     {
-        //
+        $id = $request->id;
+        if($id){
+            //Si encuentra el ID edita
+            $proyect = Proyect::findOrFail($request->id);
+            $proyect->update($request->all());
+            return redirect()->route('proyects.list')->with('success', 'Proyecto editado correctamente');
+        }else{
+            //Si no, Crea un Item
+            Proyect::create($request->all());
+            return redirect()->route('proyects.list')->with('success', 'Proyecto Agregado correctamente');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Proyect  $proyect
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Proyect $proyect)
+    public function delete($proyect_id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Proyect  $proyect
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Proyect $proyect)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Proyect  $proyect
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Proyect $proyect)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Proyect  $proyect
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Proyect $proyect)
-    {
-        //
+        $proyect = Proyect::findOrFail($proyect_id);
+        $proyect->enabled=0;
+        $proyect->save();
+        return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
     }
 }

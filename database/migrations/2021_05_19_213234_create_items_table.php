@@ -19,6 +19,8 @@ class CreateItemsTable extends Migration
             $table->string('hhscheduled');
             $table->string('hhreal');
             $table->string('entrytime_item');
+            $table->bigInteger('proyect_id')->unsigned();
+            $table->foreign('proyect_id')->references('id')->on('proyects')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->timestamps();
         });
     }
