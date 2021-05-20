@@ -21,11 +21,10 @@ class CreateProyectsTable extends Migration
             $table->string('startdate');
             $table->string('finishdate');
             $table->string('contact');
-            $table->string('status');
+            $table->string('statusproyect');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->bigInteger('item_id')->unsigned();
-            $table->foreign('item_id')->references('id')->on('items')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+      
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->timestamps();

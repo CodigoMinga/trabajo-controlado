@@ -15,13 +15,15 @@
                 Agregar Clientes
             </a>
         </div>
-        <table id="tabla" class="table table-striped table-dark table-sm" style="width:100%" >
+        <table id="tabla" class="table table-striped  table-sm" style="width:100%" >
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Rut</th>
                     <th>Teléfono</th>
-                    <th>Dirección</th>
                     <th>Correo</th>
+                    <th>Representante</th>
+                    <th>Estado</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -38,10 +40,12 @@
                 responsive: true,
                 "data": {!! json_encode($clients->toArray()) !!},
                 "columns": [
-                    { "data": "name","width":"20%"},
-                    { "data": "phone","width":"20%"},
-                    { "data": "address","width":"20%"},
-                    { "data": "email","width":"20%"},
+                    { "data": "name","width":"15%"},
+                    { "data": "rut","width":"15%"},
+                    { "data": "phone","width":"15%"},
+                    { "data": "email","width":"15%"},
+                    { "data": "representative","width":"15%"},
+                    { "data": "statusclient","width":"15%"},
                     { data: "id", render : function ( data, type, row, meta ) {
                         return '<a class="btn btn-light material-icons" href="{{ url("/")}}/clients/'+data+'" >description</a>';
                     },"width":"1%"},
