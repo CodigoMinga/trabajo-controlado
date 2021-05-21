@@ -11,25 +11,6 @@
     <form method="post" action="{{url('proyects/process')}}" id="form">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $proyect->id }}">
-        @if (!$proyect->id)
-            @if(count($companys)>1)
-            <div class="form-group">
-                <label for="company_id">Restoran:</label>
-                <select name="company_id" id="company_id" class="form-control">
-                    @foreach($companys as $company)
-                    <option value="{{ $company->id }}">{{$company->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            @else
-            <input type="hidden" name="company_id" value="{{$companys[0]->id}}">
-            @endif
-        @endif
-        <div class="form-group">
-            <label for="client_id">Clientes:</label>
-            <select name="client_id" id="client_id" class="form-control" value="{{$client->name}}" required>    
-            </select>
-        </div>
         <div class="form-group">
             <label>Nombre de Proyecto</label>
             <input type="text" class="form-control" placeholder="" name="name" value="{{$proyect->name}}" required>
@@ -52,29 +33,30 @@
         </div>
             <div class="form-group">
             <label for="user_id">Supervisor:</label>
-            <select name="user_id" id="user_id" class="form-control" value="{{$client->name}}" required>    
+            <select name="user_id" id="user_id" class="form-control" required>
+                @foreach ($users as $user)
+                    <option value="{{$user->id}}" {{$user->id==$proyect->user_id ? "selected" : ""}}>{{$user->name}}</option>
+                @endforeach   
             </select>
              </div>
+             <div class="form-group">
+                <label for="client_id">Cliente:</label>
+                <select name="client_id" id="client_id" class="form-control" required>
+                    @foreach ($clients as $client)
+                        <option value="{{$client->id}}">{{$client->name}}</option>
+                    @endforeach   
+                </select>
+                 </div>
             <div class="form-group">
             <label>Contacto Terreno</label>
             <input type="text" class="form-control" placeholder="" name="contact" value="{{$proyect->contact}}" required>
             </div>
-            <select name="statusproyect" id="enabled">
+            <select name="statusproyect" id="statusproyect">
                 <option value="Pendiente">Pendiente</option>
                 <option value="Ejecución">Ejecución</option>
                 <option value="Terminada">Terminada</option>
                 <option value="Anulada">Anulada</option>
            </select>
-           <div class="form-group">
-            <label for="user_id">Trabajadores:</label>
-            <select name="user_id" id="user_id" class="form-control" value="{{$client->name}}" required>    
-            </select>
-             </div>
-             <div class="form-group">
-                <label for="item_id">Item:</label>
-                <select name="item_id" id="item_id" class="form-control" value="{{$item->name}}" required>    
-                </select>
-            </div>
         <br>
         <div class="d-flex  justify-content-between">
             <button type="submit" class="btn btn-success">

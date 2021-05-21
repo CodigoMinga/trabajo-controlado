@@ -12,22 +12,20 @@ use Illuminate\Http\Request;
 class ProyectController extends Controller
 {
     public function list(){
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-        $items_id = Auth::user()->items()->pluck('item_id')->toArray();
-        $proyects = Proyect::whereIn('client_id',$clients_id)->get();
+        $proyects = Proyect::all();
         return view('proyects.list',compact('proyects'));
     }
 
     public function add(){
-        $clients = Auth::user()->clients()->get();
-        $items = Auth::user()->items()->get();
+        $clients = Client::all();
+        $users = User::all();
         $proyect = new Proyect;
-        return view('proyects.form',compact('clients','proyect','items'));
+        return view('proyects.form',compact('clients','users','proyect'));
     }
    
     public function details($proyect_id)
     {
-        $clients = Auth::user()->clients()->get();
+        $clients = Client::all();
         $proyect = Proyect::find($proyect_id);
         return view('proyects.form',compact('clients','proyect'));
     }
