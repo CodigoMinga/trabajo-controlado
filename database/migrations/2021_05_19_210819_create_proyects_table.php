@@ -16,13 +16,13 @@ class CreateProyectsTable extends Migration
         Schema::create('proyects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('entrytime');
-            $table->string('departuretime');
-            $table->string('startdate');
-            $table->string('finishdate');
-            $table->string('contact');
-            $table->string('statusproyect');
-            $table->bigInteger('user_id')->unsigned();
+            $table->date('entrytime');
+            $table->date('departuretime');
+            $table->date('startdate')->nullable();
+            $table->date('finishdate')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('statusproyect')->default('pendiente');
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
       
             $table->bigInteger('client_id')->unsigned();

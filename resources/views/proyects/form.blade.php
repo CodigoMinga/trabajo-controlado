@@ -23,6 +23,8 @@
             <label>Fecha de Termino Programada</label>
             <input type="date" class="form-control" placeholder="" name="departuretime" value="{{$proyect->departuretime}}" required>
         </div>
+        @if($proyect->id)
+        
         <div class="form-group">
             <label>Fecha de Inicio Real</label>
             <input type="date" class="form-control" placeholder="" name="startdate" value="{{$proyect->startdate}}" required>
@@ -31,6 +33,7 @@
             <label>Fecha de Termino Real</label>
             <input type="date" class="form-control" placeholder="" name="finishdate" value="{{$proyect->finishdate}}" required>
         </div>
+        @endif
             <div class="form-group">
             <label for="user_id">Supervisor:</label>
             <select name="user_id" id="user_id" class="form-control" required>
@@ -51,12 +54,14 @@
             <label>Contacto Terreno</label>
             <input type="text" class="form-control" placeholder="" name="contact" value="{{$proyect->contact}}" required>
             </div>
+            @if($proyect->id)
             <select name="statusproyect" id="statusproyect">
                 <option value="Pendiente">Pendiente</option>
                 <option value="Ejecución">Ejecución</option>
                 <option value="Terminada">Terminada</option>
                 <option value="Anulada">Anulada</option>
            </select>
+            @endif
         <br>
         <div class="d-flex  justify-content-between">
             <button type="submit" class="btn btn-success">

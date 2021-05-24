@@ -40,6 +40,11 @@
                     <a class="nav-link" href="{{url('/clients/list')}}"><span class="material-icons">people</span>Clientes</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{url('/proyects/list')}}"><span class="material-icons">description</span>Proyectos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/items/list')}}"><span class="material-icons">category</span>Items</a>
+                </li>
                     <a class="nav-link" href="{{url('/users/list')}}"><span class="material-icons">account</span>Usuarios</a>
                 </li>
 
