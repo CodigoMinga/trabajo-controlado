@@ -46,7 +46,12 @@ route::get('/proyects/add','ProyectController@add')->name('proyects.add');
 route::get('/proyects/{proyect_id}','ProyectController@details')->name('proyects.details');
 route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('proyects.delete');
 route::post('/proyects/process', 'ProyectController@process');
-
+//Rutas Items
+route::get('/items/list','ItemController@list')->name('items.list');
+route::get('/items/add','ItemController@add')->name('items.add');
+route::get('/items/{item_id}','ItemController@details')->name('items.details');
+route::get('/items/{item_id}/delete','ItemController@delete')->name('items.delete');
+route::post('/items/process', 'ItemController@process');
 
  //USUARIOS
  route::get('/users/list',               'UserController@list')->name('users.list');

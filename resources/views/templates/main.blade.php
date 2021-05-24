@@ -42,6 +42,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/proyects/list')}}"><span class="material-icons">description</span>Proyectos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/items/list')}}"><span class="material-icons">category</span>Items</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="material-icons">settings</span>Configurar

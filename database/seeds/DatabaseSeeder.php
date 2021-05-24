@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Client;
+use App\User;
+use App\Role;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,12 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
-        $this->call(ClientSeeder::class);
-=======
         $this->call(UserSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(ClientSeeder::class);
         
->>>>>>> Nicolas
     }
 }

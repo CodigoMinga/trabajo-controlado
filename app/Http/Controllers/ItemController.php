@@ -3,83 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Proyect;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function list(){
+        $proyects = Proyect::all();
+        $items = Item::all();
+        return view('items.list',compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add(){
+        $proyects = Proyect::all();
+        $item = new Item;
+        return view('proyects.form',compact('item','proyects'));
+    }
+   
+    public function details($item_id)
     {
-        //
+        $proyect = Proyect::all();
+        $item = Item::find($item_id);
+        return view('items.form',compact('item','proyect'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function process(Request $request)
     {
-        //
+        $id = $request->id;
+        if($id){
+            //Si encuentra el ID edita
+            $item = Item::findOrFail($request->id);
+            $item->update($request->all());
+            return redirect()->route('items.list')->with('success', 'Item editado correctamente');
+        }else{
+            //Si no, Crea un Item
+            Item::create($request->all());
+            return redirect()->route('items.list')->with('success', 'Item Agregado correctamente');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Item $item)
+    public function delete($item_id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Item $item)
-    {
-        //
+        $item = Item::findOrFail($item_id);
+        $item->enabled=0;
+        $item->save();
+        return redirect()->route('items.list')->with('success', 'Item eliminado correctamente');
     }
 }
