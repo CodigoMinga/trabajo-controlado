@@ -13,23 +13,11 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function add(){
-        $role_ids=[1,2];
-        if(Auth::user()->hasRole('superadmin')){
-            $role_ids=[1,2,3];
-        }
-        $clients = Auth::user()->clients;
-        $roles = Role::whereIn("id",$role_ids)->get();
-        $user = new User;
-        return view('users.form',compact('roles','clients','user'));
+        return view('users.form');
     }
 
     public function list(){
-        //clientes a los que pertenece el usuario
-       // $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-        //Consultar a la tabla client_user las id de los usuarios que pertenecen a las compañias dichas
-       // $users_id= DB::table('client_user')->whereIn('client_id',$clients_id)->pluck('user_id')->toArray();
-        //buscar los usuarios con las id obtenidas
-        $users = User::WhereIn('id',$users_id)->get();
+        $users = User::all();
         return view('users.list',compact('users'));
     }
 
