@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function add(){
-        return view('users.form');
+        $user = new User;
+        return view('users.form',compact('user'));
     }
 
     public function list(){
@@ -22,14 +23,8 @@ class UserController extends Controller
     }
 
     public function details($user_id){
-        $role_ids=[1,2];
-        if(Auth::user()->hasRole('superadmin')){
-            $role_ids=[1,2,3];
-        }
-        $clients = Auth::user()->clients;
-        $roles = Role::whereIn("id",$role_ids)->get();
         $user = User::findOrFail($user_id);
-        return view('users.form',compact('roles','clients','user'));
+        return view('users.form',compact('user'));
     }
     public function delete($user_id)
     {
@@ -61,19 +56,6 @@ class UserController extends Controller
             //BORRA ROLES ANTIGUOS
             DB::table('role_user')->where('user_id', $id)->delete();
 
-            //RENUEVA Clientes
-            $client_ids = $request->client_id;
-            foreach ($client_ids as $key => $client_id) {
-                $client = Client::findOrFail($client_id);
-                $user->clients()->attach($client);
-            }
-
-            //RENUEVA ROLES
-            $role_ids = $request->role_id;
-            foreach ($role_ids as $key => $role_id) {
-                $role = Role::findOrFail($role_id);
-                $user->roles()->attach($role);
-            }
 
             return redirect()->route('users.list')->with('success', 'Usuario editado correctamente');
         }else{
@@ -86,20 +68,6 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
 
             $user->save();
-
-            //ADJUNTA ROLES
-            $role_ids = $request->role_id;
-            foreach ($role_ids as $key => $role_id) {
-                $role = Role::findOrFail($role_id);
-                $user->roles()->attach($role);
-            }
-
-            //ADJUNTA Clientes
-            $client_ids = $request->client_id;
-            foreach ($client_ids as $key => $client_id) {
-                $client = Client::findOrFail($client_id);
-                $user->clients()->attach($client);
-            }
 
             return redirect()->route('users.list')->with('success', 'Usuario creado correctamente');
         }

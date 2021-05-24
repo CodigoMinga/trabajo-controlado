@@ -1,15 +1,13 @@
 @extends('templates.main')
 @section('content')
-    <h1><span class="material-icons">work</span>hola</h1>
-    <div style="display:block;height:5000px;width:3rem;">
-        <h1>
+    
             @if ($user->id)
                 <i class="material-icons">description</i>Detalles de Usuario
             @else
                 <i class="material-icons">add_box</i>Agregar Usuario
             @endif
         </h1>
-        <form method="post" action="{{url('/users/process')}}">
+        <form class="col-10 pl-2" method="post" action="{{url('/users/process')}}">
             {{csrf_field()}}
             <input type="hidden" name="id" value="{{ $user->id }}">
             <div class="form-group">
@@ -42,26 +40,6 @@
                   <input type="text" class="form-control" name="password" length="6" required>
               </div>
             @endif
-            @if(COUNT($clients)>1)
-              <br>
-              <h6>Clientes</h6>
-              @foreach ($clients as $client)
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" name="client_id[]" value="{{$client->id}}" id="clientCheck{{ $loop->iteration }}" {{$user->clients->contains('id', $client->id) ? 'checked':''}}>
-                  <label class="form-check-label" for="clientCheck{{ $loop->iteration }}">{{$client->name}}</label>
-                </div>      
-              @endforeach
-            @else
-              <input type="hidden" name="client_id[]" value="{{$clients[0]->id}}">
-            @endif
-            <br>
-            <h6>Roles</h6>
-            @foreach ($roles as $role)
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" name="role_id[]" value="{{$role->id}}" id="roleCheck{{ $loop->iteration }}" {{$user->hasRole($role->name) ? 'checked':''}}>
-                <label class="form-check-label" for="roleCheck{{ $loop->iteration }}">{{$role->description}}</label>
-              </div>      
-            @endforeach
             <br>
             <div class="d-flex  justify-content-between">
               <button type="submit" class="btn btn-success ">
