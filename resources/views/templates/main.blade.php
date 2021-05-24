@@ -27,7 +27,7 @@
 <body class="bg-light">
     <nav class="navbar sticky-top navbar-dark navbar-expand-sm">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">ProjeCon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,12 +42,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/users/list')}}"><span class="material-icons">account</span>Usuarios</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/')}}"><span class="material-icons">account</span>Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/logout')}}"><span class="material-icons">account</span>Logout</a>
-                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="material-icons">settings</span>Configurar
@@ -56,7 +51,7 @@
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="{{url('/logout')}}">Logout</a></li>
                     </ul>
                 </li>
                 </ul>
