@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','rut','phone','enable',
     ];
 
     /**
@@ -37,8 +37,38 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function clientUsers()
+    public function client_Users()
     {
         return $this->hasMany('App\Client_User');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userRoles()
+    {
+        return $this->hasMany('App\UserRole');
+    }
+
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class);
+    }
+
+
+    public function hasRole($role)
+    {
+        //verifica que sea un array, si es un array hace una busqueda del array
+        if (is_array($role)) {
+            return null !== $this->roles()->whereIn('name', $role)->first();
+        }else{
+            return null !== $this->roles()->where('name', $role)->first();
+        }
     }
 }
