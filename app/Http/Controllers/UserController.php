@@ -19,6 +19,7 @@ class UserController extends Controller
 
     public function list(){
         $users = User::all();
+       
         return view('users.list',compact('users'));
     }
 
@@ -54,7 +55,7 @@ class UserController extends Controller
             //BORRA clientes ANTIGUAS
             DB::table('client_user')->where('user_id', $id)->delete();
             //BORRA ROLES ANTIGUOS
-            DB::table('role_user')->where('user_id', $id)->delete();
+            DB::table('user_role')->where('user_id', $id)->delete();
 
 
             return redirect()->route('users.list')->with('success', 'Usuario editado correctamente');

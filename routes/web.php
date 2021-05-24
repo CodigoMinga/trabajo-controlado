@@ -24,12 +24,8 @@ Route::post('/login/passwordlost/process',  'MainController@passwordLostProcess'
 Route::get('/login/resetpassword/{user_id}/token/{token}',            'MainController@passwordRessetToken');
 Route::post('/login/resetpassword/{user_id}/token/{token}/process',   'MainController@passwordRessetTokenProcess');
 
-
-
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+//ESTAS RUTAS NECESITAN ESTAR LOGUEADO
+Route::group(['middleware' => ['auth']], function() {
 
 //Rutas CLientes
 Route::get('/clients/list','ClientController@list')->name('clients.list');
@@ -57,3 +53,8 @@ route::post('/proyects/process', 'ProyectController@process');
  route::post('/users/process',           'UserController@process')->name('users.process');
  //CAMBIAR CLAVE
  Route::post('/users/passwordchange/process','UserController@passwordchangeProcess');
+
+ //LOGOUT
+ route::get('/logout','MainController@logout');
+
+});

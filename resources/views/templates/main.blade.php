@@ -39,6 +39,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/clients/list')}}"><span class="material-icons">people</span>Clientes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/users/list')}}"><span class="material-icons">account</span>Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/')}}"><span class="material-icons">account</span>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/logout')}}"><span class="material-icons">account</span>Logout</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="material-icons">settings</span>Configurar
