@@ -49,6 +49,10 @@ route::get('/items/{item_id}','ItemController@details')->name('items.details');
 route::get('/items/{item_id}/delete','ItemController@delete')->name('items.delete');
 route::post('/items/process', 'ItemController@process');
 
+//Rutas Tareas
+route::get('/tasks/list',               'TaskController@list')->name('tasks.list');
+route::get('/tasks/add',                'TaskController@add')->name('tasks.add');
+
  //USUARIOS
  route::get('/users/list',               'UserController@list')->name('users.list');
  route::get('/users/add',                'UserController@add')->name('users.add');
