@@ -20,16 +20,8 @@
                 <tr>
                     <th>Numero de Proyecto</th>
                     <th>Cliente</th>
-                    <th>Nombre de Proyecto</th>
-                    <th>Fecha de Inicio Programada</th>
-                    <th>Fecha de Termino Programada</th>
-                    <th>Fecha de Inicio Real</th>
-                    <th>Fecha de Termino Real</th>
-                    <th>Supervisor</th>
-                    <th>Contacto de Terreno</th>
-                    <th>Estado</th>
-                    <th>Trabajadores</th>
-                    <th>Items</th>
+                    <th>Nombre de Proyecto</th>  
+                    <th>Supervisor</th>                   
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -46,18 +38,10 @@
                 responsive: true,
                 "data": {!! json_encode($proyects->toArray()) !!},
                 "columns": [
-                    { "data": "id","width":"5%"},
-                    { "data": "client.name","width":"5%"},
-                    { "data": "name","width":"5%"},
-                    { "data": "entrytime","width":"5%"},
-                    { "data": "departuretime","width":"5%"},
-                    { "data": "startdate","width":"5%"},
-                    { "data": "finishdate","width":"5%"},
-                    { "data": "user.name","width":"5%"},
-                    { "data": "contact","width":"5%"},
-                    { "data": "statusproyect","width":"5%"},
-                    { "data": "user.name","width":"5%"},
-                    { "data": "item.name","width":"5%"},
+                    { "data": "id","width":"20%"},
+                    { "data": "client.name","width":"20%"},
+                    { "data": "name","width":"20%"},
+                    { "data": "user.name","width":"20%"},
                     { data: "id", render : function ( data, type, row, meta ) {
                         return '<a class="btn btn-light material-icons" href="{{ url("/")}}/proyects/'+data+'" >description</a>';
                     },"width":"1%"},

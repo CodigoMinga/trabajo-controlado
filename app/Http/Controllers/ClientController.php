@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -23,7 +24,7 @@ class ClientController extends Controller
    public function list()
    {
        //Array de los clientes del Usuario
-       $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+       $clients = Client::all();
        return view ('clients.list' ,compact('clients'));
    }
 
