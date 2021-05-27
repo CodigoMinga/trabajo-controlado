@@ -8,20 +8,27 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-   public function add(){
+   public function add()
+   {
        $users=User::all();
        return view('clients.add',compact('users'));
    }
-   public function addProcess(Request $request){
 
+   public function addProcess(Request $request)
+   {
     Client::create($request->all());
     return redirect()->route('clients.list')->with('success', 'Cliente Creado correctamente');
-}
-   public function list(){
-       $clients = Client::all();
+   }
+
+   public function list()
+   {
+       //Array de los clientes del Usuario
+       $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
        return view ('clients.list' ,compact('clients'));
    }
-   public function details($client_id){
+
+   public function details($client_id)
+   {
     return view('clients.details', [
         'client' => Client::find($client_id)
     ]);
