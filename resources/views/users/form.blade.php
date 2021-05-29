@@ -6,7 +6,7 @@
             @else
                 <i class="material-icons">add_box</i>Agregar Usuario
             @endif
-        </h1>
+            
         <form class="col-10 pl-2" method="post" action="{{url('/users/process')}}">
             {{csrf_field()}}
             <input type="hidden" name="id" value="{{ $user->id }}">

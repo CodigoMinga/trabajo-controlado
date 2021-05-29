@@ -5,27 +5,34 @@ namespace App\Http\Controllers;
 use App\Proyect;
 use App\User;
 use App\Client;
-use App\Item;
 use Auth;
 use Illuminate\Http\Request;
 
 class ProyectController extends Controller
 {
     public function list(){
-        $proyects = Proyect::all();
+        //Array de los clientes del Usuario
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+
+        //Proyectos que pertenecesn a el clientes del Usuario
+        $proyects = Proyect::whereIn('client_id',$clients_id)->get();
+
         return view('proyects.list',compact('proyects'));
     }
 
     public function add(){
-        $clients = Client::all();
-        $users = User::all();
+        //Array de los clientes del Usuario
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+
         $proyect = new Proyect;
-        return view('proyects.form',compact('clients','users','proyect'));
+        return view('proyects.form',compact('clients', 'proyect'));
     }
    
     public function details($proyect_id)
     {
-        $clients = Client::all();
+        //Array de los clientes del Usuario
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+
         $proyect = Proyect::find($proyect_id);
         return view('proyects.form',compact('clients','proyect'));
     }
@@ -48,8 +55,7 @@ class ProyectController extends Controller
     public function delete($proyect_id)
     {
         $proyect = Proyect::findOrFail($proyect_id);
-        $proyect->enabled=0;
-        $proyect->save();
+        $proyect->delete();
         return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
     }
 }

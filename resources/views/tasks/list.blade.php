@@ -9,19 +9,18 @@
 @section('content')
     <div class="container pt-3">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>Lista de Proyectos</h1>
-            <a  href="{{ url('/') }}/proyects/add" class="btn btn-success">
+            <h1>Lista de Tareas</h1>
+            <a  href="{{ url('/') }}/tasks/add" class="btn btn-success">
                 <i class="material-icons">add</i>
-                Agregar Proyectos
+                Agregar Tarea
             </a>
         </div>
         <table id="tabla" class="table table-striped  table-sm" style="width:100%" >
             <thead>
                 <tr>
-                    <th>Numero de Proyecto</th>
-                    <th>Cliente</th>
-                    <th>Nombre de Proyecto</th>  
-                    <th>Supervisor</th>                   
+                    <th>Titulo</th>
+                    <th>Hora de Inicio</th>
+                    <th>Porcentaje</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -36,14 +35,14 @@
         $(document).ready(function() {
             $('#tabla').DataTable({
                 responsive: true,
-                "data": {!! json_encode($proyects->toArray()) !!},
+                "data": {!! json_encode($tasks->toArray()) !!},
                 "columns": [
-                    { "data": "id","width":"20%"},
-                    { "data": "client.name","width":"20%"},
-                    { "data": "name","width":"20%"},
-                    { "data": "user.name","width":"20%"},
+                    { "data": "title","width":"30%"},
+                    { "data": "entrytime","width":"25%"},
+                    { "data": "percentage","width":"25%"},
+         
                     { data: "id", render : function ( data, type, row, meta ) {
-                        return '<a class="btn btn-light material-icons" href="{{ url("/")}}/proyects/'+data+'" >description</a>';
+                        return '<a class="btn btn-light material-icons" href="{{ url("/")}}/tasks/'+data+'" >description</a>';
                     },"width":"1%"},
                 ],
                 language: {

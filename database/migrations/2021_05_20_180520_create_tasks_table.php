@@ -15,10 +15,11 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->longText('activitydescription');
-            $table->string('entrytimetask');
+            $table->string('title');
+            $table->longText('description');
+            $table->time('entrytime');
             $table->string('percentage');
-            $table->string('statustask');
+            $table->string('status');
             $table->bigInteger('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->timestamps();

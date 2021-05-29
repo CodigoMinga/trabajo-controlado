@@ -1,85 +1,83 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Proyect;
+use App\User;
+use App\Client;
+use App\Item;
 use App\Task;
+use Auth;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function list(){
+
+        //Array de los clientes del Usuario
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        
+        //Tipos de Proyectos que pertenecesn a los clientes del Usuario
+        $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
+
+        //Tipos de Items que pertenecesn a los Proyectos del cliente
+        $items_id    = Item::whereIn('proyect_id',$proyects_id)->pluck('id')->toArray();
+
+        //Tareas que pertenecesn a los items de proyetos de los clientes del Usuario
+        $tasks = Task::whereIn('item_id',$items_id)->get();
+        
+        foreach ($tasks as $key => $task) {
+            $task->item;
+        }
+        return view('tasks.list',compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+public function add(){
+    //Array de los clientes del Usuario
+    $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+
+    //Tipos de proyectos que pertenecesn a las clientes del Usuario
+    $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
+
+    //Tipos de Items que pertenecesn a las proyecto del Usuario
+    $items = Item::whereIn('proyect_id',$proyects_id)->get();
+
+    $task = new Task();
+    return view('tasks.form',compact('task','items'));
+}
+
+public function details($task_id){
+    //Array de los clientes del Usuario
+    $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+    
+    //Tipos de Proyectos que pertenecesn a los clientes del Usuario
+    $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
+
+   //Tipos de Items que pertenecesn a los Proyectos del cliente
+   $items_id    = Item::whereIn('proyect_id',$proyects_id)->pluck('id')->toArray();
+
+    $task = Task::find($task_id);
+    return view('tasks.form',compact('items','task'));
+}
+
+public function process(Request $request)
     {
-        //
+        $id = $request->id;
+        if($id){
+            //Si encuentra el ID edita
+            $task = Task::findOrFail($request->id);
+            $task->update($request->all());
+            return redirect()->route('tasks.list')->with('success', 'Tarea editada correctamente');
+        }else{
+            //Si no, Crea una tarea
+            Task::create($request->all());
+            return redirect()->route('tasks.list')->with('success', 'Tarea Agregada correctamente');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function delete($task_id)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Task $task)
-    {
-        //
+        $task = Task::findOrFail($task_id);
+        $task->delete();
+        return redirect()->route('tasks.list')->with('success', 'Tarea eliminada correctamente');
     }
 }
