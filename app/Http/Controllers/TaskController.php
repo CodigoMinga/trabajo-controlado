@@ -28,6 +28,7 @@ class TaskController extends Controller
         foreach ($tasks as $key => $task) {
             $task->item;
         }
+        
         return view('tasks.list',compact('tasks'));
     }
 
