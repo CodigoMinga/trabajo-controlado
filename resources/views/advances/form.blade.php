@@ -1,7 +1,7 @@
 @extends('templates.main')
 @section('content')
 <h1>
-    @if ($task->id)
+    @if ($advance->id)
         <i class="material-icons">edit</i>Editar Avance
     @else
         <i class="material-icons">add_box</i>Agregar Avance
@@ -40,7 +40,7 @@
                   <i class="material-icons">done</i>
                   Guardar
               </button>
-            @if ($task->id)
+            @if ($advance->id)
                 <a  href="{{ url('/') }}/advances/{{$advance->id}}/delete" class="btn btn-danger">
                     <i class="material-icons">clear</i>
                     Eliminar

@@ -56,6 +56,13 @@ route::get('/tasks/{task_id}',          'TaskController@details')->name('tasks.d
 route::get('/tasks/{task_id}/delete',   'TaskController@delete')->name('tasks.delete');
 route::post('/tasks/process',           'TaskController@process')->name('tasks.process');
 
+//Rutas avance
+route::get('/advances/list',               'AdvanceController@list')->name('advances.list');
+route::get('/advances/add',                'AdvanceController@add')->name('advances.add');
+route::get('/advances/{advance_id}',          'AdvanceController@details')->name('advances.details');
+route::get('/advances/{advance_id}/delete',   'AdvanceController@delete')->name('advances.delete');
+route::post('/advances/process',           'AdvanceController@process')->name('advances.process');
+
  //USUARIOS
  route::get('/users/list',               'UserController@list')->name('users.list');
  route::get('/users/add',                'UserController@add')->name('users.add');
