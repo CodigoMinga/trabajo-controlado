@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Proyect;
 use App\User;
+use App\Item;
+use DB;
 use App\Client;
 use Auth;
 use Illuminate\Http\Request;
@@ -21,11 +23,13 @@ class ProyectController extends Controller
     }
 
     public function add(){
+        $users = User::all();
+        $items=Item::all();
         //Array de los clientes del Usuario
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        $clients = Auth::user()->clients()->pluck('client_id')->toArray();
 
         $proyect = new Proyect;
-        return view('proyects.form',compact('clients', 'proyect'));
+        return view('proyects.form',compact('proyect' , 'clients','users','items'));
     }
    
     public function details($proyect_id)
@@ -34,7 +38,7 @@ class ProyectController extends Controller
         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
 
         $proyect = Proyect::find($proyect_id);
-        return view('proyects.form',compact('clients','proyect'));
+        return view('proyects.form',compact('clients','proyect','users','items'));
     }
 
     public function process(Request $request)
@@ -46,7 +50,7 @@ class ProyectController extends Controller
             $proyect->update($request->all());
             return redirect()->route('proyects.list')->with('success', 'Proyecto editado correctamente');
         }else{
-            //Si no, Crea un Item
+            //Si no, Crea un Proyect
             Proyect::create($request->all());
             return redirect()->route('proyects.list')->with('success', 'Proyecto Agregado correctamente');
         }

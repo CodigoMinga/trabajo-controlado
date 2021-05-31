@@ -12,6 +12,14 @@
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $proyect->id }}">
         <div class="form-group">
+            <label for="client_id">Cliente:</label>
+            <select name="client_id" id="client_id" class="form-control" required>
+                @foreach ($clients as $client)
+                    <option value="{{$client->id}}" {{$client->id==$proyect->client_id ? "selected" : ""}}>{{$client->name}}</option>
+                @endforeach   
+            </select>
+        </div>
+        <div class="form-group">
             <label>Nombre de Proyecto</label>
             <input type="text" class="form-control" placeholder="" name="name" value="{{$proyect->name}}" required>
         </div>
@@ -27,11 +35,11 @@
         
         <div class="form-group">
             <label>Fecha de Inicio Real</label>
-            <input type="date" class="form-control" placeholder="" name="startdate" value="{{$proyect->startdate}}" required>
+            <input type="date" class="form-control" placeholder="" name="startdate" value="{{$proyect->startdate}}" >
         </div>
         <div class="form-group">
             <label>Fecha de Termino Real</label>
-            <input type="date" class="form-control" placeholder="" name="finishdate" value="{{$proyect->finishdate}}" required>
+            <input type="date" class="form-control" placeholder="" name="finishdate" value="{{$proyect->finishdate}}">
         </div>
         @endif
             <div class="form-group">
@@ -41,15 +49,8 @@
                     <option value="{{$user->id}}" {{$user->id==$proyect->user_id ? "selected" : ""}}>{{$user->name}}</option>
                 @endforeach   
             </select>
-             </div>
-             <div class="form-group">
-                <label for="client_id">Cliente:</label>
-                <select name="client_id" id="client_id" class="form-control" required>
-                    @foreach ($clients as $client)
-                        <option value="{{$client->id}}">{{$client->name}}</option>
-                    @endforeach   
-                </select>
-                 </div>
+            </div>
+
             <div class="form-group">
             <label>Contacto Terreno</label>
             <input type="text" class="form-control" placeholder="" name="contact" value="{{$proyect->contact}}" required>
@@ -62,6 +63,22 @@
                 <option value="Anulada">Anulada</option>
            </select>
             @endif
+            <div class="form-group">
+                <label for="user_id">Trabajadores:</label>
+                <select name="user_id" id="user_id" class="form-control" required>
+                    @foreach ($users as $user)
+                        <option value="{{$user->id}}" {{$user->id==$proyect->user_id ? "selected" : ""}}>{{$user->name}}</option>
+                    @endforeach   
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="item_id">Items:</label>
+                <select name="item_id" id="item_id" class="form-control" required>
+                    @foreach ($items as $item)
+                        <option value="{{$item->id}}" {{$item->id==$proyect->item_id ? "selected" : ""}}>{{$item->name}}</option>
+                    @endforeach   
+                </select>
+            </div>
         <br>
         <div class="d-flex  justify-content-between">
             <button type="submit" class="btn btn-success">

@@ -34,7 +34,7 @@ class ItemController extends Controller
         $proyects = Proyect::whereIn('client_id',$clients_id)->get();
         
         $item = new Item;
-        return view('proyects.form',compact('item','proyects'));
+        return view('items.form',compact('item','proyects'));
     }
    
     public function details($item_id){

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsTable extends Migration
+class CreateProyectUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('proyect__users', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
-            $table->time('hhscheduled');
-            $table->time('hhreal');
-            $table->date('entrytime_item');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->bigInteger('proyect_id')->unsigned();
             $table->foreign('proyect_id')->references('id')->on('proyects')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->timestamps();
@@ -32,6 +30,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('proyect__users');
     }
 }

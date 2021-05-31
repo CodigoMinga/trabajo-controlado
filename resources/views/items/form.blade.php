@@ -17,16 +17,16 @@
         </div>
         <div class="form-group">
             <label>Horas Hombres Programadas</label>
-            <input type="date" class="form-control" placeholder="" name="hhscheduled" value="{{$item->hhscheduled}}" required>
+            <input type="time" class="form-control" placeholder="" name="hhscheduled" value="{{$item->hhscheduled}}" required>
         </div>
         <div class="form-group">
             <label>Horas Hombres Real</label>
-            <input type="date" class="form-control" placeholder="" name="hhreal" value="{{$item->hhreal}}" required>
+            <input type="time" class="form-control" placeholder="" name="hhreal" value="{{$item->hhreal}}" required>
         </div>
 
             <div class="form-group">
             <label>Fecha de Inicio</label>
-            <input type="text" class="form-control" placeholder="" name="entrytime_item" value="{{$item->entrytime_item}}" required>
+            <input type="date" class="form-control" placeholder="" name="entrytime_item" value="{{$item->entrytime_item}}" required>
             </div>
 
         <br>

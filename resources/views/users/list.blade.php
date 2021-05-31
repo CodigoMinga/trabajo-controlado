@@ -18,7 +18,7 @@
                 Agregar Usuario
             </a>
         </div>
-        <table id="tabla" class="table table-striped table-dark table-sm" style="width:100%" >
+        <table id="tabla" class="table table-striped  table-sm" style="width:100%" >
             <thead>
                 <tr>
                     <th>Usuarios</th>

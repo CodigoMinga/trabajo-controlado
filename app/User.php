@@ -60,6 +60,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Client::class);
     }
+    public function proyect()
+    {
+        return $this->hasMany('App\Proyect');
+    }
+
 
 
     public function hasRole($role)
