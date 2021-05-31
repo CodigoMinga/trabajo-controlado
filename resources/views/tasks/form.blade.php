@@ -28,9 +28,22 @@
             </div>
             <div class="form-group">
                 <label>Estado</label>
-                <input type="text" class="form-control" name="status"  value="{{$task->status}}" >
+                <select name="status" id="status">
+                    <option value="0">Pendiente</option>
+                    <option value="1">Ejecución</option>
+                    <option value="2">Terminada</option>
+                    <option value="3">Anulada</option>
+               </select>
             </div>
             <br>
+            <div class="form-group">
+                <label for="item_id">Items:</label>
+                <select name="item_id" id="item_id" class="form-control" required>
+                    @foreach ($items as $item)
+                        <option value="{{$item->id}}" {{$item->id==$task->item_id ? "selected" : ""}}>{{$item->name}}</option>
+                    @endforeach   
+                </select>
+            </div>
             <div class="d-flex  justify-content-between">
               <button type="submit" class="btn btn-success ">
                   <i class="material-icons">done</i>

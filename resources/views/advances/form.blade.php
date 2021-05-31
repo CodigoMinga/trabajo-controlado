@@ -34,6 +34,14 @@
                 <label>Comentario</label>
                 <input type="text" class="form-control" name="coment"  value="{{$advance->coment}}" >
             </div>
+            <div class="form-group">
+                <label for="task_id">Tarea:</label>
+                <select name="task_id" id="task_id" class="form-control" required>
+                    @foreach ($tasks as $task)
+                        <option value="{{$task->id}}" {{$task->id==$advance->task_id ? "selected" : ""}}>{{$task->title}}</option>
+                    @endforeach   
+                </select>
+            </div>
             <br>
             <div class="d-flex  justify-content-between">
               <button type="submit" class="btn btn-success ">
