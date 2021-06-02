@@ -6,7 +6,14 @@
     </h1>
     <form method="post" action="{{url('/clients/add/process')}}" id="form">
     {{csrf_field()}}
-
+    <div class="form-group">
+      <label for="user_id">Usuario:</label>
+      <select name="user_id" id="user_id" class="form-control">
+          @foreach($users as $user)
+          <option value="{{ $user->id }}">{{$user->name}}</option>
+          @endforeach
+      </select>
+  </div>
     <div class="form-group">
       <label for="formGroupExampleInput" class="form-label">Nombre:</label>
       <input type="text" class="form-control" placeholder="Nombre Empresa" name="name" id="name" required>

@@ -36,11 +36,11 @@
           </div>
         <button type="submit" class="btn btn-success ">
             <i class="material-icons">done</i>
-            Editar Usuario
+            Editar Cliente
         </button>
         <a  href="{{ url('/') }}/clients/{{$client->id}}/delete" class="btn btn-danger">
             <i class="material-icons">clear</i>
-            Eliminar Usuario
+            Eliminar Cliente
         </a>
     </form>
 

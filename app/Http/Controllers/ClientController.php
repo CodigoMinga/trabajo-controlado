@@ -11,7 +11,7 @@ class ClientController extends Controller
 {
    public function add()
    {
-       $users=User::all();
+       $users = User::all();
        return view('clients.add',compact('users'));
    }
 
@@ -23,6 +23,7 @@ class ClientController extends Controller
 
    public function list()
    {
+       
        //Array de los clientes del Usuario
        $clients = Client::all();
        return view ('clients.list' ,compact('clients'));
@@ -30,9 +31,10 @@ class ClientController extends Controller
 
    public function details($client_id)
    {
-    return view('clients.details', [
-        'client' => Client::find($client_id)
-    ]);
+    $users = User::all();
+    //Array de los clientes del Usuario
+    $client = Client::find($client_id);
+    return view('clients.details', compact('users','client'));
    }
 
 
