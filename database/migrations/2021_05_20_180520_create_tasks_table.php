@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->longText('description');
             $table->time('entrytime');
             $table->string('percentage');
-            $table->string('status')->default(0);
+            $table->string('status')->default('0');
             $table->bigInteger('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->timestamps();
