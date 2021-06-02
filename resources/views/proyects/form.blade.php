@@ -71,14 +71,6 @@
                     @endforeach   
                 </select>
             </div>
-            <div class="form-group">
-                <label for="item_id">Items:</label>
-                <select name="item_id" id="item_id" class="form-control" required>
-                    @foreach ($items as $item)
-                        <option value="{{$item->id}}" {{$item->id==$proyect->item_id ? "selected" : ""}}>{{$item->name}}</option>
-                    @endforeach   
-                </select>
-            </div>
         <br>
         <div class="d-flex  justify-content-between">
             <button type="submit" class="btn btn-success">

@@ -24,12 +24,12 @@ class ProyectController extends Controller
 
     public function add(){
         $users = User::all();
-        $items=Item::all();
+
         //Array de los clientes del Usuario
-        $clients = Auth::user()->clients()->pluck('client_id')->toArray();
+        $clients = Auth::user()->clients()->get();
 
         $proyect = new Proyect;
-        return view('proyects.form',compact('proyect' , 'clients','users','items'));
+        return view('proyects.form',compact('proyect', 'clients', 'users'));
     }
    
     public function details($proyect_id)
