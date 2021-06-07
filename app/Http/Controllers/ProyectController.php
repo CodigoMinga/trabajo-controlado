@@ -17,7 +17,11 @@ class ProyectController extends Controller
         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
 
         //Proyectos que pertenecesn a el clientes del Usuario
-        $proyects = Proyect::whereIn('client_id',$clients_id)->get();
+        $proyects = Proyect::all();
+        foreach ($proyects as $key => $proyect) {
+            $proyect -> client;
+            $proyect -> user;
+        }
 
         return view('proyects.list',compact('proyects'));
     }
@@ -26,7 +30,7 @@ class ProyectController extends Controller
         $users = User::all();
 
         //Array de los clientes del Usuario
-        $clients = Auth::user()->clients()->get();
+        $clients = Client::all();
 
         $proyect = new Proyect;
         return view('proyects.form',compact('proyect', 'clients', 'users'));
@@ -51,7 +55,13 @@ class ProyectController extends Controller
             return redirect()->route('proyects.list')->with('success', 'Proyecto editado correctamente');
         }else{
             //Si no, Crea un Proyect
-            Proyect::create($request->all());
+            $proyect =Proyect::create($request->all());
+            $worker_ids = $request->worker_id;
+            foreach ($worker_ids as $key => $worker_id) {
+                $user=User::findOrFail($worker_id);
+                $proyect->workers()->attach($user); 
+            }
+      
             return redirect()->route('proyects.list')->with('success', 'Proyecto Agregado correctamente');
         }
     }

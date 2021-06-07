@@ -10,5 +10,17 @@ class Proyect extends Model
 'user_id'];
 
 
-
+    public function workers(){
+        return $this->belongsToMany(User::class);
+        
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
+    public function items(){
+        return $this->HasMany(Item::class);
+    }
 }

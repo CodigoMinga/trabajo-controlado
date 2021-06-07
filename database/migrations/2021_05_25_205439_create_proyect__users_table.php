@@ -13,7 +13,7 @@ class CreateProyectUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('proyect__users', function (Blueprint $table) {
+        Schema::create('proyect_user', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');

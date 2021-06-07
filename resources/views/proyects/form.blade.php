@@ -16,7 +16,7 @@
             <select name="client_id" id="client_id" class="form-control" required>
                 @foreach ($clients as $client)
                     <option value="{{$client->id}}" {{$client->id==$proyect->client_id ? "selected" : ""}}>{{$client->name}}</option>
-                @endforeach   
+                @endforeach     
             </select>
         </div>
         <div class="form-group">
@@ -64,13 +64,22 @@
            </select>
             @endif
             <div class="form-group">
-                <label for="user_id">Trabajadores:</label>
-                <select name="user_id" id="user_id" class="form-control" required>
+                <label for="worker_id">Trabajadores:</label>
+                <select id="worker_id" class="form-control" >
                     @foreach ($users as $user)
                         <option value="{{$user->id}}" {{$user->id==$proyect->user_id ? "selected" : ""}}>{{$user->name}}</option>
                     @endforeach   
                 </select>
+
             </div>
+            <a id="btn_agregar" onclick="addWorker()" class="btn btn-dark">
+                Agregar
+            </a>
+      
+            <ol id="list">
+
+            </ol>
+          
         <br>
         <div class="d-flex  justify-content-between">
             <button type="submit" class="btn btn-success">
@@ -86,4 +95,29 @@
         </div>
     </form>
 </div>
+
+<script>
+    var addworker = document.getElementById("worker_id");
+    var doclista1 = document.getElementById("list");
+    var btnAgregar = document.getElementById("button");
+    function addWorker(){
+        
+        var id=worker_id.value;
+        var texto=worker_id.options[worker_id.selectedIndex].text;
+        var wdiv=document.createElement('div');
+        var input=document.createElement('input');
+        input.type="hidden";
+        input.value=id;
+        input.name="worker_id[]";
+        wdiv.innerHTML=texto;
+        wdiv.append(input);
+        
+
+        doclista1.append(wdiv);
+
+    }
+
+
+
+</script>
 @stop

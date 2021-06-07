@@ -18,7 +18,7 @@
         <table id="tabla" class="table table-striped  table-sm" style="width:100%" >
             <thead>
                 <tr>
-                    <th>Numero de Proyecto</th>
+                
                     <th>Numero de Item</th>
                     <th>Descripcion</th>
                     <th>Horas Hombres Programadas</th>
@@ -40,7 +40,7 @@
                 responsive: true,
                 "data": {!! json_encode($items->toArray()) !!},
                 "columns": [
-                    { "data": "proyect.id","width":"15%"},
+                   
                     { "data": "id","width":"15%"},
                     { "data": "description","width":"15%"},
                     { "data": "hhschedule","width":"15%"},

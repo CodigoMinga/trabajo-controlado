@@ -11,42 +11,24 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function list(){
-        //Array de los clientes del Usuario
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-        
-        //Tipos de Proyectos que pertenecesn a los clientes del Usuario
-        $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
-
-        //items que pertenecesn a los proyectos de los clientes del Usuario
-        $items = Item::whereIn('ptoyect_id',$proyects_id)->get();
-        
-        foreach ($items as $key => $item) {
-            $item->proyect;
-        }
+     
+    
+        $items = Item::all();
         return view('items.list',compact('items'));
     }
 
     public function add(){
          //Array de los clientes del Usuario
-         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-        
-         //Tipos de Proyectos que pertenecesn a las clientes del Usuario
-        $proyects = Proyect::whereIn('client_id',$clients_id)->get();
-        
+  
         $item = new Item;
         return view('items.form',compact('item','proyects'));
     }
    
     public function details($item_id){
         //Array de los clientes del Usuario
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-
-        //Tipos de Proyectos que pertenecesn a las clientes del Usuario
-        $proyects = Proyect::whereIn('client_id',$clients_id)->get();
-
-
+   ;
         $item = Item::find($item_id);
-        return view('items.form',compact('item','proyects'));
+        return view('items.form',compact('item'));
     }
 
     public function process(Request $request)
