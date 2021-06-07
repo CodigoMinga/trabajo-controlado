@@ -12,6 +12,14 @@
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $item->id }}">
         <div class="form-group">
+            <label for="proyect_id">Proyecto:</label>
+            <select name="proyect_id" id="proyect_id" class="form-control" required>
+                @foreach ($proyects as $proyect)
+                    <option value="{{$proyect->id}}" {{$proyect->id==$item->proyect_id ? "selected" : ""}}>{{$proyect->name}}</option>
+                @endforeach   
+            </select>
+        </div>
+        <div class="form-group">
             <label>Descripcion</label>
             <input type="text" class="form-control" placeholder="" name="description" value="{{$item->description}}" required>
         </div>

@@ -18,8 +18,8 @@ class UserController extends Controller
     }
 
     public function list(){
-        $users = User::all();
-       
+        $users = User::whereEnabled()->get();
+        
         return view('users.list',compact('users'));
     }
 

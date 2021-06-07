@@ -12,14 +12,24 @@ class ItemController extends Controller
 {
     public function list(){
      
-    
-        $items = Item::all();
+        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+
+        $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
+        
+        $items = Item::whereIn('proyect_id',$proyects_id)->get();
+        
+        foreach ($items as $key => $item) {
+            $item->proyect;
+        }
         return view('items.list',compact('items'));
     }
 
     public function add(){
          //Array de los clientes del Usuario
-  
+         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        
+         $proyects = Proyect::whereIn('client_id',$clients_id)->get();
+
         $item = new Item;
         return view('items.form',compact('item','proyects'));
     }
