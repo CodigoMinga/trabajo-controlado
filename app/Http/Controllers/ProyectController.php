@@ -38,11 +38,12 @@ class ProyectController extends Controller
    
     public function details($proyect_id)
     {
-        //Array de los clientes del Usuario
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-
+       
+        $clients = Client::all();
+        $users = User::all();
         $proyect = Proyect::find($proyect_id);
-        return view('proyects.form',compact('clients','proyect','users','items'));
+        
+        return view('proyects.form',compact('proyect','clients','users'));
     }
 
     public function process(Request $request)
@@ -68,8 +69,14 @@ class ProyectController extends Controller
 
     public function delete($proyect_id)
     {
-        $proyect = Proyect::findOrFail($proyect_id);
-        $proyect->delete();
-        return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
+        try {
+            $proyect = Proyect::findOrFail($proyect_id);
+            ;
+            $proyect->enabled=0;
+            $proyect->save();
+            return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
+        } catch (\Throwable $th) {
+            return redirect()->route('proyects.list')->with('error', 'Problema al eliminar Proyecto');
+        }
     }
 }

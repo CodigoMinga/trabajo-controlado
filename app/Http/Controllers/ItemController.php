@@ -19,7 +19,7 @@ class ItemController extends Controller
 
     public function add(){
          //Array de los clientes del Usuario
-  
+        $proyects=Proyect::all();
         $item = new Item;
         return view('items.form',compact('item','proyects'));
     }

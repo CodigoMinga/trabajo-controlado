@@ -55,6 +55,7 @@
             <label>Contacto Terreno</label>
             <input type="text" class="form-control" placeholder="" name="contact" value="{{$proyect->contact}}" required>
             </div>
+            <br>
             @if($proyect->id)
             <select name="statusproyect" id="statusproyect">
                 <option value="Pendiente">Pendiente</option>
@@ -63,6 +64,8 @@
                 <option value="Anulada">Anulada</option>
            </select>
             @endif
+            <br>
+            <br>
             <div class="form-group">
                 <label for="worker_id">Trabajadores:</label>
                 <select id="worker_id" class="form-control" >
@@ -72,6 +75,7 @@
                 </select>
 
             </div>
+            <br>
             <a id="btn_agregar" onclick="addWorker()" class="btn btn-dark">
                 Agregar
             </a>
@@ -120,4 +124,5 @@
 
 
 </script>
+
 @stop
