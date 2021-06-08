@@ -1,12 +1,13 @@
 @extends('templates.main')
 @section('content')
-    
-            @if ($user->id)
-                <i class="material-icons">description</i>Detalles de Usuario
-            @else
-                <i class="material-icons">add_box</i>Agregar Usuario
-            @endif
-            
+<div class="container pt-3">
+    <h1>
+        @if ($user->id)
+            <i class="material-icons">description</i>Detalles de Usuario
+        @else
+            <i class="material-icons">add_box</i>Agregar Usuario
+        @endif
+    </h1>    
         <form class="col-10 pl-2" method="post" action="{{url('/users/process')}}">
             {{csrf_field()}}
             <input type="hidden" name="id" value="{{ $user->id }}">
@@ -41,6 +42,14 @@
               </div>
             @endif
             <br>
+            <h6>Roles</h6>
+            @foreach ($roles as $role)
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" name="role_id[]" value="{{$role->id}}" id="roleCheck{{ $loop->iteration }}" {{$user->hasRole($role->name) ? 'checked':''}}>
+                <label class="form-check-label" for="roleCheck{{ $loop->iteration }}">{{$role->description}}</label>
+              </div>      
+            @endforeach
+            <br>
             <div class="d-flex  justify-content-between">
               <button type="submit" class="btn btn-success ">
                   <i class="material-icons">done</i>
@@ -71,4 +80,5 @@
     
         </script>
     </div>
+<div>  
 @stop
