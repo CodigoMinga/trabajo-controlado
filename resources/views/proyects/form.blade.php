@@ -79,11 +79,39 @@
             <a id="btn_agregar" onclick="addWorker()" class="btn btn-dark">
                 Agregar
             </a>
-      
-            <ol id="list">
+            <br><br>
 
-            </ol>
+            <table class="table table-bordered" id="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Trabajador</th>
+                    <th scope="col">Eliminar</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="tr">
+                    <td id="td"></td>
+                    <td ></td>
+         
+                  </tr>
+
+                </tbody>
+            </table>
+
           
+        <br>
+        @if ($proyect->id)
+        <div class="form-group">
+            <label for="item_id">Item:</label>
+            <select id="item_id" class="form-control" >
+                @foreach ($items as $item)
+                    <option value="{{$item->id}}" {{$item->id==$proyect->item_id ? "selected" : ""}}>{{$item->name}}</option>
+                @endforeach   
+            </select>
+
+        </div>
+        @endif
         <br>
         <div class="d-flex  justify-content-between">
             <button type="submit" class="btn btn-success">
@@ -91,33 +119,53 @@
                 Guardar
             </button>
             @if ($proyect->id)
+            <a href="{{ url('/items/add')}}" class="btn btn-dark">
+                <i class="material-icons">category</i>
+                Agregar Items
+            </a>
             <a href="{{ url('/proyects') }}/{{ $proyect->id }}/delete" class="btn btn-danger">
                 <i class="material-icons">close</i>
                 Eliminar
             </a>
+
             @endif
         </div>
+        <br>
+
     </form>
+    <br>
+   
+
 </div>
 
 <script>
     var addworker = document.getElementById("worker_id");
-    var doclista1 = document.getElementById("list");
+    var table = document.getElementById("table");
     var btnAgregar = document.getElementById("button");
     function addWorker(){
-        
+        var ntr = document.createElement('tr');
+        var ntd = document.createElement('td');
+        var ntd1 = document.createElement('td');
         var id=worker_id.value;
-        var texto=worker_id.options[worker_id.selectedIndex].text;
-        var wdiv=document.createElement('div');
+        ntd=worker_id.options[worker_id.selectedIndex].text;
         var input=document.createElement('input');
+        var btneliminar = document.createElement("btndelet");
+        btneliminar.innerText="Eliminar";
+        btneliminar.onclick=function(){
+            this.parentElement.remove();
+
+        }
+        ntd1.append(btneliminar)
+        ntr.append(ntd);
+        ntr.append(ntd1);
         input.type="hidden";
         input.value=id;
         input.name="worker_id[]";
-        wdiv.innerHTML=texto;
-        wdiv.append(input);
+        ntd.innerHTML=texto;
+        ntd.append(input);
+        table.append(ntr);
+      
         
-
-        doclista1.append(wdiv);
 
     }
 

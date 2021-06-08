@@ -41,7 +41,7 @@ class ItemController extends Controller
             return redirect()->route('items.list')->with('success', 'Item editado correctamente');
         }else{
             //Si no, Crea un Item
-            Item::create($request->all());
+            Item::create($request->all());    
             return redirect()->route('items.list')->with('success', 'Item Agregado correctamente');
         }
     }
