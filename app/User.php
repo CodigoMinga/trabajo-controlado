@@ -76,4 +76,14 @@ class User extends Authenticatable
             return null !== $this->roles()->where('name', $role)->first();
         }
     }
+    
+    public function hasClient($client)
+    {
+        //verifica que sea un array, si es un array hace una busqueda del array
+        if (is_array($client)) {
+            return null !== $this->client()->whereIn('name', $client)->first();
+        }else{
+            return null !== $this->client()->where('name', $client)->first();
+        }
+    }
 }

@@ -50,6 +50,16 @@
               </div>      
             @endforeach
             <br>
+            <h6>Clientes</h6>
+            @foreach ($clients as $client)
+            <div class="form-group form-check">
+              <input class="form-check-input" name="client_id[]" type="checkbox" value="{{$client->id}}" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                {{$client->email}}
+              </label>
+            </div>
+            @endforeach
+            <br>
             <div class="d-flex  justify-content-between">
               <button type="submit" class="btn btn-success ">
                   <i class="material-icons">done</i>

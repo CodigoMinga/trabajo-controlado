@@ -17,9 +17,10 @@ class UserController extends Controller
         if(Auth::user()->hasRole('superadmin')){
             $role_ids=[1,2,3];
         }
+        $clients = Auth::user()->clients()->pluck('client_id')->toArray();
         $roles = Role::whereIn("id",$role_ids)->get();
         $user = new User;
-        return view('users.form',compact('roles','user'));
+        return view('users.form',compact('clients','roles','user'));
     }
 
     public function list(){
@@ -33,9 +34,10 @@ class UserController extends Controller
         if(Auth::user()->hasRole('superadmin')){
             $role_ids=[1,2,3];
         }
+        $clients = Auth::user()->clients()->pluck('client_id')->toArray();
         $roles = Role::whereIn("id",$role_ids)->get();
         $user = User::findOrFail($user_id);
-        return view('users.form',compact('roles','user'));
+        return view('users.form',compact('roles','user','clients'));
     }
     
     public function delete($user_id)
