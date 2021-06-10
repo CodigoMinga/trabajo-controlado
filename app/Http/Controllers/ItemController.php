@@ -12,24 +12,14 @@ class ItemController extends Controller
 {
     public function list(){
      
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-
-        $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
-        
-        $items = Item::whereIn('proyect_id',$proyects_id)->get();
-        
-        foreach ($items as $key => $item) {
-            $item->proyect;
-        }
+    
+        $items = Item::all();
         return view('items.list',compact('items'));
     }
 
     public function add(){
          //Array de los clientes del Usuario
-         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-        
-         $proyects = Proyect::whereIn('client_id',$clients_id)->get();
-
+        $proyects=Proyect::all();
         $item = new Item;
         return view('items.form',compact('item','proyects'));
     }
@@ -51,7 +41,7 @@ class ItemController extends Controller
             return redirect()->route('items.list')->with('success', 'Item editado correctamente');
         }else{
             //Si no, Crea un Item
-            Item::create($request->all());
+            Item::create($request->all());    
             return redirect()->route('items.list')->with('success', 'Item Agregado correctamente');
         }
     }

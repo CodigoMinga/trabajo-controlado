@@ -24,9 +24,10 @@ class CreateProyectsTable extends Migration
             $table->string('statusproyect')->default('pendiente');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-      
+            
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
         });
     }

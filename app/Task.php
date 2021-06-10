@@ -15,4 +15,7 @@ class Task extends Model
     {
         return $this->hasMany('App\Advance');
     }
+    public function item(){
+        return $this->belongsTo(item::class);
+    }
 }

@@ -15,7 +15,7 @@ class ProyectController extends Controller
     public function list(){
         //Array de los clientes del Usuario
         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-
+        
         //Proyectos que pertenecesn a el clientes del Usuario
         $proyects = Proyect::all();
         foreach ($proyects as $key => $proyect) {
@@ -38,11 +38,12 @@ class ProyectController extends Controller
    
     public function details($proyect_id)
     {
-        //Array de los clientes del Usuario
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-
+        $items= Item::all();
+        $clients = Client::all();
+        $users = User::all();
         $proyect = Proyect::find($proyect_id);
-        return view('proyects.form',compact('clients','proyect','users','items'));
+        
+        return view('proyects.form',compact('proyect','clients','users','items'));
     }
 
     public function process(Request $request)

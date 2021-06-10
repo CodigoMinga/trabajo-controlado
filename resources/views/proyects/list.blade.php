@@ -21,7 +21,8 @@
                     <th>Numero de Proyecto</th>
                     <th>Cliente</th>
                     <th>Nombre de Proyecto</th>  
-                    <th>Supervisor</th>                   
+                    <th>Supervisor</th>  
+                    <th>Estado</th>                 
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -42,6 +43,7 @@
                     { "data": "client.name","width":"20%"},
                     { "data": "name","width":"20%"},
                     { "data": "user.name","width":"20%"},
+                    { "data": "statusproyect","width":"20%"},
                     { data: "id", render : function ( data, type, row, meta ) {
                         return '<a class="btn btn-light material-icons" href="{{ url("/")}}/proyects/'+data+'" >description</a>';
                     },"width":"1%"},
