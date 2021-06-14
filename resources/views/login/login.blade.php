@@ -232,7 +232,7 @@ fieldset{
         <h6><b> <a href="https://www.codigominga.cl">Desarrollo: www.codigominga.cl</a></b>
 
         <br/><br/>
-        <b> <a href="{{url('/login/passwordlost')}}">Recuperar Contraseña</a></b>
+        <b> <a href="{{url('/passwordlost')}}">Recuperar Contraseña</a></b>
       </h6>
       </div>
     </div>

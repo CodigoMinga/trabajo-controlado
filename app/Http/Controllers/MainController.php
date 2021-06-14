@@ -8,6 +8,12 @@ use Auth;
 use App\User;
 use App\Mail\PasswordResetMail;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Str;
+use DB;
+use Carbon\Carbon;
+use App\Log;
+use Session;
 
 class MainController extends Controller
 {
@@ -45,7 +51,7 @@ class MainController extends Controller
     function logout()
     {
         Auth::logout();
-        return redirect(url('/'));
+        return redirect(url('/login'));
     }
 
     function passwordLost(){
@@ -73,9 +79,9 @@ class MainController extends Controller
         if($user->save()){
             $userAutentificated = Auth::loginUsingId($user->id);
             $sucess  = true;
-            $returnUrl = url('/')."/home";
+            $returnUrl = url('/')."/login";
             $message =  "Contraseña actualizada, Bienvenido a nuestro sistema";
-            return view('template.genericphoneprocess',compact('message','sucess','returnUrl'));
+            return view('templates.genericphoneprocess',compact('message','sucess','returnUrl'));
         }else{
             return redirect()->back()->withErrors(['error' => 'No se pudo cambiar la contraseña']);
         }
@@ -106,5 +112,28 @@ class MainController extends Controller
 
         $message = "Se ha enviado un correo para reestablecer contraseña";
         return view('generic',compact('message'));
+    }
+    public function passwordChangeProcess($user_id, Request $request){
+
+        $user = User::findOrFail($user_id);
+        $oldpassword = $request->oldpassword;
+
+        if(Hash::check($oldpassword,$user->password)){
+            $input = $request->all();
+            $input['password'] = Hash::make($request->password);
+            $user->update($input);
+
+            $userAutentificated = Auth::loginUsingId($user->id);
+            /*
+            $sucess  = true;
+            $returnUrl = url('/')."/app/home";
+            $message =  "Contraseña Cambiada Correctamente";
+            */
+            Session::flash('noti-check', "Contraseña Cambiada Correctamente");
+            //return view('template.genericphoneprocess',compact('message','sucess','returnUrl'));
+            return redirect('/login');
+        }else{
+            return back()->with('noti-error','La clave antigua no corresponde')->withInput();
+        }
     }
 }

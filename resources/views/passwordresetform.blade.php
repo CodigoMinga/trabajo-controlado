@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Furgoncontrolado.cl</title>
+    <title>Trabajocontrolado.cl</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta property="og:site_name" content="www.furgoncontrolado.cl">
@@ -36,8 +36,8 @@
         }
 
         #grad2 {
-            background:#F7CE26;
-            background: linear-gradient #F7CE26 100%);
+            background: rgb(255,255,255);
+            background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,158,0,1) 100%);
             max-height: 80%;
         }
     </style>
@@ -50,13 +50,8 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body" style="border-radius: 10px">
-        <p class="login-box-msg"><b>Ingrese su Email para recuperar su clave.</b></p>
-        @if ($message = Session::get('error'))
-            <div class="alert alert-danger alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $message }}</strong>
-            </div>
-        @endif
+        <p class="login-box-msg">Introdusca su nueva clave</p>
+
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -65,25 +60,29 @@
                     @endforeach
                 </ul>
             </div>
+        @else
+            <form method="post" action="{{url('/resetpassword/'.$user->id.'/token/'.$token.'/process')}}">
+                {{csrf_field()}}
+
+
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
         @endif
-        <form method="post" action="{{url('/passwordlost/process')}}">
-            {{csrf_field()}}
-            <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email" name="email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
 
-            <div class="row">
-                <div class="col-xs-8">
 
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Enviar</button>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
 
 
         <!-- /.social-auth-links -->
