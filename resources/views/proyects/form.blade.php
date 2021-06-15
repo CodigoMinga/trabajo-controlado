@@ -57,11 +57,11 @@
             </div>
             <br>
             @if($proyect->id)
-            <select name="statusproyect" id="statusproyect">
-                <option value="Pendiente">Pendiente</option>
-                <option value="Ejecución">Ejecución</option>
-                <option value="Terminada">Terminada</option>
-                <option value="Anulada">Anulada</option>
+            <select name="status" id="status">
+                <option value="0">Pendiente</option>
+                <option value="1">Ejecución</option>
+                <option value="2">Terminada</option>
+                <option value="3">Anulada</option>
            </select>
             @endif
             <br>

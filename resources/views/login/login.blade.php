@@ -222,7 +222,7 @@ fieldset{
 
       </div> <!-- end login -->
       <div class="logo">
-            <img  src="{{url('/img/logo.png')}}" class="logo" width="200" height="150">
+            <img  src="{{url('/img/logo1.png')}}" class="logo" width="200" height="150">
           <div class="clearfix"></div>
       </div>
       

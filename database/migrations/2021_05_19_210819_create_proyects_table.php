@@ -21,7 +21,7 @@ class CreateProyectsTable extends Migration
             $table->date('startdate')->nullable();
             $table->date('finishdate')->nullable();
             $table->string('contact')->nullable();
-            $table->string('statusproyect')->default('pendiente');
+            $table->string('status')->default('0');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             

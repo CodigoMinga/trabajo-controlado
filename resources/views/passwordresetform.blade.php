@@ -1,112 +1,65 @@
-
-<!DOCTYPE html>
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
     <title>Trabajocontrolado.cl</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta property="og:site_name" content="www.furgoncontrolado.cl">
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{ url('/') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('/') }}/bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ url('/') }}/bower_components/Ionicons/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('/') }}/dist/css/AdminLTE.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{{ url('/') }}/plugins/iCheck/square/blue.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <style>
-        #grad {
-            background-image: linear-gradient(to right, red , yellow);
-            border-radius:20px;
-            width:100%;
-        }
-
-        #grad2 {
-            background: rgb(255,255,255);
-            background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,158,0,1) 100%);
-            max-height: 80%;
-        }
-    </style>
-</head>
-<body class="hold-transition login-page" id="grad2">
-<div class="login-box">
-    <div class="login-logo">
-    <!--   <img src="{{url("/")}}/images/logo_2021.png" width="100%"> -->
-
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body" style="border-radius: 10px">
-        <p class="login-box-msg">Introdusca su nueva clave</p>
-
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @else
-            <form method="post" action="{{url('/resetpassword/'.$user->id.'/token/'.$token.'/process')}}">
-                {{csrf_field()}}
-
-
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Contraseña" name="password">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+  </head>
+  <body>
+    <div class="mt-3">
+        <div class="login-logo">
+        <!--   <img src="{{url("/")}}/images/logo_2021.png" width="100%"> -->
+    
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body" style="border-radius: 10px">
+            <p class="login-box-msg">Introdusca su nueva clave</p>
+    
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="row">
-                    <div class="col-xs-8">
-
+            @else
+                <form method="post" action="{{url('/resetpassword/'.$user->id.'/token/'.$token.'/process')}}">
+                    {{csrf_field()}}
+    
+    
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar</button>
+                    <div class="row">
+                        <div class="col-xs-8">
+    
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat mt-3">Iniciar</button>
+                        </div>
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-        @endif
-
-
-
-
-        <!-- /.social-auth-links -->
-
-
+                </form>
+            @endif
+    
+        </div>
+        <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery 3 -->
-<script src="{{ url('/') }}/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ url('/') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="{{ url('/') }}/plugins/iCheck/icheck.min.js"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' /* optional */
-        });
-    });
-</script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
 </html>
