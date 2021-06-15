@@ -75,7 +75,7 @@ class ProyectController extends Controller
     public function delete($proyect_id)
     {
         $proyect = Proyect::findOrFail($proyect_id);
-        $proyect->status=0;
+        $proyect->enabled=0;
         $proyect->save();
         return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
     }
