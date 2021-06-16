@@ -28,6 +28,10 @@ class CreateProyectsTable extends Migration
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->boolean('enabled')->default(1);
+
+            $table->bigInteger('assignproyect_id')->nullable()->unsigned();
+            $table->foreign('assignproyect_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

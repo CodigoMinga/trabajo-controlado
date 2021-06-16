@@ -80,15 +80,14 @@ class ProyectController extends Controller
         return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
     }
 
-    public function assignProyect()
+    public function assignproyect()
     {
         $proyects = Proyect::where('assignproyect_id','=',Auth::user()->id)
-            ->where('status_id','=','0')
+            ->where('status','=','0')
             ->get();
 
-            foreach ($proyects as $key => $proyect) {
-                $proyect -> user;
-            }
-        return view('proyects.assign', compact('proyects')); 
+            return view('proyects.assign', [
+                'proyects' => $proyects
+            ]);
     }
 }
