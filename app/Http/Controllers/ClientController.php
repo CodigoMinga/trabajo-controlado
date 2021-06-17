@@ -50,7 +50,8 @@ class ClientController extends Controller
    public function delete($client_id)
    {
        $client = client::findOrFail($client_id);
-       $client->delete();
+       $client->enabled=0;
+       $client->save();
        return redirect()->route('clients.list')->with('success', 'Cliente eliminado correctamente');
    }
 }

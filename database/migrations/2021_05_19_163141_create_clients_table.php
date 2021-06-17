@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('email');
             $table->string('representative');
             $table->string('statusclient');
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
         });
     }

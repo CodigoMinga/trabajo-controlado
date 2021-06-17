@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Login
-Route::get('/login',                 'MainController@login')->name('login');
+Route::get('/',                      'MainController@login')->name('login');
 Route::post('/checklogin',           'MainController@checkLogin');
-Route::get('/register',              'MainController@register');
-Route::post('/register/process',     'MainController@registerProcess');
+//Route::get('/register',              'MainController@register');
+//Route::post('/register/process',     'MainController@registerProcess');
 
 Route::get('/passwordlost', 'MainController@passwordLost');
 Route::post('/passwordlost/process', 'MainController@passwordLostProcess');
@@ -39,7 +39,7 @@ Route::get('/clients/{client_id}/delete','ClientController@delete');
 
 //Rutas Proyectos
 route::get('/proyects/list','ProyectController@list')->name('proyects.list');
-route::get('/proyects/assign','ProyectController@assignproyect')->name('proyects.assign');
+route::get('/proyects/assign','ProyectController@assign')->name('proyects.assign');
 route::get('/proyects/add','ProyectController@add')->name('proyects.add');
 route::get('/proyects/{proyect_id}','ProyectController@details')->name('proyects.details');
 route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('proyects.delete');

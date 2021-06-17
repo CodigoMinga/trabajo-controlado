@@ -49,7 +49,8 @@ class ItemController extends Controller
     public function delete($item_id)
     {
         $item = Item::findOrFail($item_id);
-        $item->delete();
+        $item->enabled=0;
+        $item->save();
         return redirect()->route('items.list')->with('success', 'Item eliminado correctamente');
     }
 }

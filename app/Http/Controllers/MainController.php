@@ -19,7 +19,7 @@ class MainController extends Controller
 {
     public function login(){
         if(Auth::user()){
-            return redirect(url('/users/list'));
+            return redirect(url('/proyects/list'));
         }else{
             return view('login.login');
         }

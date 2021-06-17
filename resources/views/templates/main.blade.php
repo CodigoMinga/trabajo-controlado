@@ -45,7 +45,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/items/list')}}"><span class="material-icons">category</span>Items</a>
                 </li>
-                    <a class="nav-link" href="{{url('/users/list')}}"><span class="material-icons">account</span>Usuarios</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/users/list')}}"><span class="material-icons">people</span>Usuarios</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -54,7 +55,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="{{url('/proyects/assign')}}">Mis Proyectos</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{url('/logout')}}">Logout</a></li>
                     </ul>
