@@ -39,7 +39,7 @@ Route::get('/clients/{client_id}/delete','ClientController@delete');
 
 //Rutas Proyectos
 route::get('/proyects/list','ProyectController@list')->name('proyects.list');
-route::get('/proyects/assign','ProyectController@assignproyect')->name('proyects.assign');
+route::get('/proyects/assign','ProyectController@assign')->name('proyects.assign');
 route::get('/proyects/add','ProyectController@add')->name('proyects.add');
 route::get('/proyects/{proyect_id}','ProyectController@details')->name('proyects.details');
 route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('proyects.delete');

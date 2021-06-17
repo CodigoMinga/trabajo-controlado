@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 class ProyectController extends Controller
 {
     public function list(){
-        //Array de los clientes del Usuario
-        $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
-        
         //Proyectos que pertenecesn a el clientes del Usuario
         $proyects = Proyect::all();
         foreach ($proyects as $key => $proyect) {
@@ -53,9 +50,11 @@ class ProyectController extends Controller
             //Si encuentra el ID edita
             $proyect = Proyect::findOrFail($request->id);
             $worker_ids = $request->worker_id;
-            foreach ($worker_ids as $key => $worker_id) {
-                $user=User::findOrFail($worker_id);
-                $proyect->workers()->attach($user); 
+            if($worker_ids !=null){
+                foreach ($worker_ids as $key => $worker_id) {
+                    $user=User::findOrFail($worker_id);
+                    $proyect->workers()->attach($user); 
+                }
             }
             $proyect->update($request->all());
             return redirect()->route('proyects.list')->with('success', 'Proyecto editado correctamente');
@@ -63,11 +62,12 @@ class ProyectController extends Controller
             //Si no, Crea un Proyect
             $proyect =Proyect::create($request->all());
             $worker_ids = $request->worker_id;
-            foreach ($worker_ids as $key => $worker_id) {
-                $user=User::findOrFail($worker_id);
-                $proyect->workers()->attach($user); 
-            }
-      
+            if($worker_ids !=null){
+                foreach ($worker_ids as $key => $worker_id) {
+                    $user=User::findOrFail($worker_id);
+                    $proyect->workers()->attach($user); 
+                }
+             }
             return redirect()->route('proyects.list')->with('success', 'Proyecto Agregado correctamente');
         }
     }
@@ -80,14 +80,14 @@ class ProyectController extends Controller
         return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
     }
 
-    public function assignproyect()
+    public function assign()
     {
-        $proyects = Proyect::where('assignproyect_id','=',Auth::user()->id)
-            ->where('status','=','0')
-            ->get();
-
-            return view('proyects.assign', [
-                'proyects' => $proyects
-            ]);
+        
+        $proyects = Proyect::where('user_id','=',Auth::user()->id)->get();
+        foreach ($proyects as $key => $proyect) {
+            $proyect -> client;
+            $proyect -> user;
+        }
+            return view('proyects.assign', compact('proyects'));
     }
 }
