@@ -21,13 +21,17 @@ class CreateProyectsTable extends Migration
             $table->date('startdate')->nullable();
             $table->date('finishdate')->nullable();
             $table->string('contact')->nullable();
-            $table->string('statusproyect')->default('pendiente');
+            $table->string('status')->default('0');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->boolean('enabled')->default(1);
+
+            $table->bigInteger('assignproyect_id')->nullable()->unsigned();
+            $table->foreign('assignproyect_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

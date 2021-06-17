@@ -52,6 +52,11 @@ class ProyectController extends Controller
         if($id){
             //Si encuentra el ID edita
             $proyect = Proyect::findOrFail($request->id);
+            $worker_ids = $request->worker_id;
+            foreach ($worker_ids as $key => $worker_id) {
+                $user=User::findOrFail($worker_id);
+                $proyect->workers()->attach($user); 
+            }
             $proyect->update($request->all());
             return redirect()->route('proyects.list')->with('success', 'Proyecto editado correctamente');
         }else{
@@ -70,7 +75,19 @@ class ProyectController extends Controller
     public function delete($proyect_id)
     {
         $proyect = Proyect::findOrFail($proyect_id);
-        $proyect->delete();
+        $proyect->enabled=0;
+        $proyect->save();
         return redirect()->route('proyects.list')->with('success', 'Proyecto eliminado correctamente');
+    }
+
+    public function assignproyect()
+    {
+        $proyects = Proyect::where('assignproyect_id','=',Auth::user()->id)
+            ->where('status','=','0')
+            ->get();
+
+            return view('proyects.assign', [
+                'proyects' => $proyects
+            ]);
     }
 }

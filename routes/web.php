@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Login
-Route::get('/',                             'MainController@login')->name('login');
-Route::post('/checklogin',                  'MainController@checkLogin');
-Route::get('/register',                     'MainController@register');
-Route::post('/register/process',            'MainController@registerProcess');
-Route::get('/login/passwordlost',           'MainController@passwordLost');
-Route::post('/login/passwordlost/process',  'MainController@passwordLostProcess');
+Route::get('/login',                 'MainController@login')->name('login');
+Route::post('/checklogin',           'MainController@checkLogin');
+Route::get('/register',              'MainController@register');
+Route::post('/register/process',     'MainController@registerProcess');
 
-Route::get('/login/resetpassword/{user_id}/token/{token}',            'MainController@passwordRessetToken');
-Route::post('/login/resetpassword/{user_id}/token/{token}/process',   'MainController@passwordRessetTokenProcess');
+Route::get('/passwordlost', 'MainController@passwordLost');
+Route::post('/passwordlost/process', 'MainController@passwordLostProcess');
+
+Route::get('/resetpassword/{user_id}/token/{token}', 'MainController@passwordRessetToken');
+Route::post('/resetpassword/{user_id}/token/{token}/process', 'MainController@passwordRessetTokenProcess');
 
 //ESTAS RUTAS NECESITAN ESTAR LOGUEADO
 Route::group(['middleware' => ['auth']], function() {
@@ -38,6 +39,7 @@ Route::get('/clients/{client_id}/delete','ClientController@delete');
 
 //Rutas Proyectos
 route::get('/proyects/list','ProyectController@list')->name('proyects.list');
+route::get('/proyects/assign','ProyectController@assignproyect')->name('proyects.assign');
 route::get('/proyects/add','ProyectController@add')->name('proyects.add');
 route::get('/proyects/{proyect_id}','ProyectController@details')->name('proyects.details');
 route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('proyects.delete');

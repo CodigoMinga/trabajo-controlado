@@ -23,4 +23,7 @@ class Proyect extends Model
     public function items(){
         return $this->HasMany(Item::class);
     }
+    public function assignproyect(){
+        return $this->belongsTo('App\User','assignproyect_id','id');
+    }
 }

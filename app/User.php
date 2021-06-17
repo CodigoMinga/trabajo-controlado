@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','rut','phone','enable',
+        'name', 'email', 'password','rut','phone','enabled',
     ];
 
     /**
@@ -74,6 +74,16 @@ class User extends Authenticatable
             return null !== $this->roles()->whereIn('name', $role)->first();
         }else{
             return null !== $this->roles()->where('name', $role)->first();
+        }
+    }
+    
+    public function hasClient($client)
+    {
+        //verifica que sea un array, si es un array hace una busqueda del array
+        if (is_array($client)) {
+            return null !== $this->client()->whereIn('name', $client)->first();
+        }else{
+            return null !== $this->client()->where('name', $client)->first();
         }
     }
 }
