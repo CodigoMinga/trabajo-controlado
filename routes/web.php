@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Login
-Route::get('/login',                 'MainController@login')->name('login');
+Route::get('/',                      'MainController@login')->name('login');
 Route::post('/checklogin',           'MainController@checkLogin');
-Route::get('/register',              'MainController@register');
-Route::post('/register/process',     'MainController@registerProcess');
+//Route::get('/register',              'MainController@register');
+//Route::post('/register/process',     'MainController@registerProcess');
 
 Route::get('/passwordlost', 'MainController@passwordLost');
 Route::post('/passwordlost/process', 'MainController@passwordLostProcess');

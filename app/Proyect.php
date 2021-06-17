@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proyect extends Model
 {
-    protected $fillable = ['created_at', 'updated_at', 'name', 'entrytime', 'departuretime', 'startdate','finishdate','contact','statusproyect','client_id',
+    protected $fillable = ['created_at', 'updated_at', 'name', 'entrytime', 'departuretime', 'startdate','finishdate','contact','status','client_id',
 'user_id','enabled'];
 
 
     public function workers(){
-        return $this->belongsToMany(User::class);
-        
+        return $this->belongsToMany(User::class); 
     }
     public function user(){
         return $this->belongsTo(User::class);
