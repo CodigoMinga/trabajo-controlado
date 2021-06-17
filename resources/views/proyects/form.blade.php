@@ -76,27 +76,24 @@
 
             </div>
             <br>
-            <a id="btn_agregar" onclick="addWorker()" class="btn btn-dark">
+            <a  onclick="addWorker()" class="btn btn-dark">
                 Agregar
             </a>
             <br><br>
 
-            <table class="table table-bordered" id="table">
+            <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th scope="col">Trabajador</th>
-                    <th scope="col">Eliminar</th>
+                    <th scope="col">Acción</th>
                     
                   </tr>
                 </thead>
-                <tbody>
-                  <tr id="tr">
-                    <td id="td"></td>
-                    <td ></td>
-         
-                  </tr>
+                <tbody id="table">       
+
 
                 </tbody>
+
             </table>
 
           
@@ -141,15 +138,15 @@
 <script>
     var addworker = document.getElementById("worker_id");
     var table = document.getElementById("table");
-    var btnAgregar = document.getElementById("button");
+   
     function addWorker(){
         var ntr = document.createElement('tr');
         var ntd = document.createElement('td');
         var ntd1 = document.createElement('td');
+        var btneliminar = document.createElement('button');
         var id=worker_id.value;
-        ntd=worker_id.options[worker_id.selectedIndex].text;
+        var texto=worker_id.options[worker_id.selectedIndex].text;
         var input=document.createElement('input');
-        var btneliminar = document.createElement("btndelet");
         btneliminar.innerText="Eliminar";
         btneliminar.onclick=function(){
             this.parentElement.remove();
@@ -164,6 +161,8 @@
         ntd.innerHTML=texto;
         ntd.append(input);
         table.append(ntr);
+        
+        
       
         
 
