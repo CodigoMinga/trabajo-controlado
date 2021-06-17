@@ -43,7 +43,7 @@
                    
                     { "data": "id","width":"15%"},
                     { "data": "description","width":"15%"},
-                    { "data": "hhschedule","width":"15%"},
+                    { "data": "hhscheduled","width":"15%"},
                     { "data": "hhreal","width":"15%"},
                     { "data": "entrytime_item","width":"15%"},
          
