@@ -1,5 +1,6 @@
 @extends('templates.main')
 @section('content')
+<div class="container pt-3">
 <h1>
     @if ($task->id)
         <i class="material-icons">edit</i>Editar Tarea
@@ -28,11 +29,11 @@
             </div>
             
             <div class="form-group">
-                <label for="item_id">Items:</label>
-                <select name="item_id" id="item_id" class="form-control" required>
-                    @foreach ($items as $item)
-                        <option value="{{$item->id}}" {{$item->id==$task->item_id ? "selected" : ""}}>{{$item->name}}</option>
-                    @endforeach   
+                <label for="item_id">Item:</label>
+            <select id="item_id" class="form-control" >
+                @foreach ($items as $item)
+                    <option value="{{$item->id}}" {{$item->id==$task->item_id ? "selected" : ""}}>{{$item->name}}</option>
+                @endforeach  
                 </select>
             </div><br>
             <div class="form-group">
@@ -59,4 +60,5 @@
         </form>
 
     </div>
+</div>
 @stop

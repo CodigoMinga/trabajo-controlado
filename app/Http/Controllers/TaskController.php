@@ -42,6 +42,7 @@ public function add(){
     //Tipos de Items que pertenecesn a las proyecto del Usuario
     $items = Item::whereIn('proyect_id',$proyects_id)->get();
 
+
     $task = new Task();
     return view('tasks.form',compact('task','items'));
 }

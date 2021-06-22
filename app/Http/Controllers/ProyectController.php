@@ -90,4 +90,24 @@ class ProyectController extends Controller
         }
             return view('proyects.assign', compact('proyects'));
     }
+
+    public function assignitems($proyect_id)
+    {
+        $proyect = Proyect::findOrFail($proyect_id);
+        
+         //Array de los clientes del Usuario
+         $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
+        
+         //Tipos de Proyectos que pertenecesn a los clientes del Usuario
+         $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
+
+        $items = Item::whereIn('proyect_id',$proyects_id)->get(); 
+
+        foreach ($proyects as $key => $proyect) {
+            $proyect -> item;
+           
+        }
+
+        return view('proyects.itemsproyect', compact('proyect','items'));
+    }
 }

@@ -44,6 +44,8 @@ route::get('/proyects/add','ProyectController@add')->name('proyects.add');
 route::get('/proyects/{proyect_id}','ProyectController@details')->name('proyects.details');
 route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('proyects.delete');
 route::post('/proyects/process', 'ProyectController@process');
+route::get('/proyects/{proyect_id}/items','ProyectController@assignitems');
+
 //Rutas Items
 route::get('/items/list','ItemController@list')->name('items.list');
 route::get('/items/add','ItemController@add')->name('items.add');
