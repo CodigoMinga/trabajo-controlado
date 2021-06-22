@@ -87,7 +87,8 @@ public function process(Request $request)
     public function delete($advance_id)
     {
         $advance = Advance::findOrFail($advance_id);
-        $advance->delete();
+        $advance->enabled=0;
+        $advance->save();
         return redirect()->route('advances.list')->with('success', 'Avance eliminado correctamente');
     }
 }

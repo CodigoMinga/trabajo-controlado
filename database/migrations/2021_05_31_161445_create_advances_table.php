@@ -21,6 +21,7 @@ class CreateAdvancesTable extends Migration
             $table->string('workedh');
             $table->string('percentage');
             $table->string('coment');
+            $table->boolean('enabled')->default(1);
             $table->longText('image')->nullable();
             $table->timestamps();
 

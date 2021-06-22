@@ -25,11 +25,11 @@
         </div>
         <div class="form-group">
             <label>Horas Hombres Programadas</label>
-            <input type="time" class="form-control" placeholder="" name="hhscheduled" value="{{$item->hhscheduled}}" required>
+            <input type="decimal" class="form-control" placeholder="" name="hhscheduled" value="{{$item->hhscheduled}}" required>
         </div>
         <div class="form-group">
             <label>Horas Hombres Real</label>
-            <input type="time" class="form-control" placeholder="" name="hhreal" value="{{$item->hhreal}}" required>
+            <input type="decimal" class="form-control" placeholder="" name="hhreal" value="{{$item->hhreal}}" required>
         </div>
 
             <div class="form-group">

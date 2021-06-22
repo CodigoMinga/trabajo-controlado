@@ -78,7 +78,8 @@ public function process(Request $request)
     public function delete($task_id)
     {
         $task = Task::findOrFail($task_id);
-        $task->delete();
+        $task->enabled=0;
+        $task->save();
         return redirect()->route('tasks.list')->with('success', 'Tarea eliminada correctamente');
     }
 }
