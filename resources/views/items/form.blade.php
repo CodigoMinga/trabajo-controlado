@@ -11,6 +11,7 @@
     <form method="post" action="{{url('items/process')}}" id="form">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $item->id }}">
+        
         <div class="form-group">
             <label for="proyect_id">Proyecto:</label>
             <select name="proyect_id" id="proyect_id" class="form-control" required>
@@ -44,6 +45,10 @@
                 Guardar
             </button>
             @if ($item->id)
+            <a href="{{ url('/tasks/add')}}" class="btn btn-dark">
+                <i class="material-icons">add_task</i>
+                Agregar Tareas
+            </a>
             <a href="{{ url('/items') }}/{{ $item->id }}/delete" class="btn btn-danger">
                 <i class="material-icons">close</i>
                 Eliminar

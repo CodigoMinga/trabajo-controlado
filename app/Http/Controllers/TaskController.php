@@ -55,7 +55,7 @@ public function details($task_id){
 
    //Tipos de Items que pertenecesn a los Proyectos del cliente
    $items_id    = Item::whereIn('proyect_id',$proyects_id)->pluck('id')->toArray();
-
+    $items=Item::all();
     $task = Task::find($task_id);
     return view('tasks.form',compact('items','task'));
 }

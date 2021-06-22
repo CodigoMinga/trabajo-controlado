@@ -64,8 +64,7 @@
                 <option value="3">Anulada</option>
            </select>
             @endif
-            <br>
-            <br>
+           <br>
             <div class="form-group">
                 <label for="worker_id">Trabajadores:</label>
                 <select id="worker_id" class="form-control" >
@@ -98,6 +97,8 @@
 
           
         <br>
+        <i class="material-icons">add_box</i>Agregar Item
+        <br>
         @if ($proyect->id)
         <div class="form-group">
             <label for="item_id">Item:</label>
@@ -120,6 +121,7 @@
                 <i class="material-icons">category</i>
                 Agregar Items
             </a>
+
             <a href="{{ url('/proyects') }}/{{ $proyect->id }}/delete" class="btn btn-danger">
                 <i class="material-icons">close</i>
                 Eliminar
