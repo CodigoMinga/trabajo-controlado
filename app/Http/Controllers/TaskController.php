@@ -33,15 +33,8 @@ class TaskController extends Controller
     }
 
 public function add(){
-    //Array de los clientes del Usuario
-    $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
 
-    //Tipos de proyectos que pertenecesn a las clientes del Usuario
-    $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
-
-    //Tipos de Items que pertenecesn a las proyecto del Usuario
-    $items = Item::whereIn('proyect_id',$proyects_id)->get();
-
+    $items = Item::all();
     $task = new Task();
     return view('tasks.form',compact('task','items'));
 }
@@ -54,7 +47,7 @@ public function details($task_id){
     $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
 
    //Tipos de Items que pertenecesn a los Proyectos del cliente
-   $items_id    = Item::whereIn('proyect_id',$proyects_id)->pluck('id')->toArray();
+   $items_id = Item::whereIn('proyect_id',$proyects_id)->pluck('id')->toArray();
     $items=Item::all();
     $task = Task::find($task_id);
     return view('tasks.form',compact('items','task'));

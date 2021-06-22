@@ -31,8 +31,7 @@
             <label>Fecha de Termino Programada</label>
             <input type="date" class="form-control" placeholder="" name="departuretime" value="{{$proyect->departuretime}}" required>
         </div>
-        @if($proyect->id)
-        
+        @if($proyect->id)  
         <div class="form-group">
             <label>Fecha de Inicio Real</label>
             <input type="date" class="form-control" placeholder="" name="startdate" value="{{$proyect->startdate}}" >
@@ -64,7 +63,6 @@
                 <option value="3">Anulada</option>
            </select>
             @endif
-           <br>
             <div class="form-group">
                 <label for="worker_id">Trabajadores:</label>
                 <select id="worker_id" class="form-control" >
@@ -97,9 +95,10 @@
 
           
         <br>
+
+        @if ($proyect->id)
         <i class="material-icons">add_box</i>Agregar Item
         <br>
-        @if ($proyect->id)
         <div class="form-group">
             <label for="item_id">Item:</label>
             <select id="item_id" class="form-control" >
@@ -109,6 +108,7 @@
             </select>
 
         </div>
+        
         @endif
         <br>
         <div class="d-flex  justify-content-between">
@@ -151,7 +151,7 @@
         var input=document.createElement('input');
         btneliminar.innerText="Eliminar";
         btneliminar.onclick=function(){
-            this.parentElement.remove();
+            ntd.parentNode.remove(ntd);
 
         }
         ntd1.append(btneliminar)
