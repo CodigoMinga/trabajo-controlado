@@ -90,4 +90,15 @@ class ProyectController extends Controller
         }
             return view('proyects.assign', compact('proyects'));
     }
+
+    public function assignitems($proyect_id)
+    {
+       //busca proyecto en base a su id
+        $proyect = Proyect::findOrFail($proyect_id);
+        
+        //busca los items del proyecto
+        $items = Item::where('proyect_id','=',$proyect->id)->get(); 
+
+        return view('proyects.itemsproyect', compact('proyect','items'));
+    }
 }

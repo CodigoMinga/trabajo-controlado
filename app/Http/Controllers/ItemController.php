@@ -26,7 +26,7 @@ class ItemController extends Controller
    
     public function details($item_id){
         //Array de los clientes del Usuario
-   ;
+        $proyects = Proyect::all();
         $item = Item::find($item_id);
         $proyects = Proyect::all();
         return view('items.form',compact('item','proyects'));
