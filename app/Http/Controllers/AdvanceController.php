@@ -42,7 +42,7 @@ public function add(){
     $clients_id = Auth::user()->clients()->pluck('client_id')->toArray();
 
     //Tipos de proyectos que pertenecesn a las clientes del Usuario
-    $proyects_id    = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
+    $proyects_id = Proyect::whereIn('client_id',$clients_id)->pluck('id')->toArray();
 
     //Tipos de Items que pertenecesn a las proyecto del Usuario
     $items_id    = Item::whereIn('proyect_id',$proyects_id)->pluck('id')->toArray();
