@@ -32,7 +32,7 @@
                 <label for="item_id">Item:</label>
             <select id="item_id" class="form-control" >
                 @foreach ($items as $item)
-                    <option value="{{$item->id}}" {{$item->id==$task->item_id ? "selected" : ""}}>{{$item->name}}</option>
+                    <option value="{{$item->id}}" {{$item->id==$task->item_id ? "selected" : ""}}>{{$item->description}}</option>
                 @endforeach  
                 </select>
             </div><br>
