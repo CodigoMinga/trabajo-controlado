@@ -5,6 +5,7 @@ use App\Proyect;
 use App\User;
 use App\Client;
 use App\Item;
+use App\Task;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -52,5 +53,14 @@ class ItemController extends Controller
         $item->enabled=0;
         $item->save();
         return redirect()->route('items.list')->with('success', 'Item eliminado correctamente');
+    }
+
+    public function taskitem($item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        //busca las tareas pertenecientes al item
+        $tasks = Task::where('item_id','=',$item->id)->get();
+
+        return view('tasks.taskitem', compact('tasks','item'));
     }
 }

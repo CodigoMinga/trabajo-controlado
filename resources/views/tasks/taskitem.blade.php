@@ -9,19 +9,18 @@
 @section('content')
     <div class="container pt-3">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>Items del Proyecto {{$proyect->name}}</h1>
-            <a  href="{{ url('/') }}/items/add" class="btn btn-success">
+            <h1>Tareas del Item</h1>
+            <a  href="{{ url('/') }}/tasks/add" class="btn btn-success">
                 <i class="material-icons">add</i>
-                Agregar Items
+                Agregar Tarea
             </a>
         </div>
         <table id="tabla" class="table table-striped  table-sm" style="width:100%" >
             <thead>
                 <tr>
-                
-                    <th>Numero de Item</th>
-                    <th>Descripcion</th>
-                    <th>Fecha de Inicio</th>
+                    <th>Titulo</th>
+                    <th>Hora de Inicio</th>
+                    <th>Porcentaje</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -36,15 +35,14 @@
         $(document).ready(function() {
             $('#tabla').DataTable({
                 responsive: true,
-                "data": {!! json_encode($items->toArray()) !!},
+                "data": {!! json_encode($tasks->toArray()) !!},
                 "columns": [
-                   
-                    { "data": "id","width":"25%"},
-                    { "data": "description","width":"25%"},
-                    { "data": "entrytime_item","width":"25%"},
+                    { "data": "title","width":"30%"},
+                    { "data": "entrytime","width":"25%"},
+                    { "data": "percentage","width":"25%"},
          
                     { data: "id", render : function ( data, type, row, meta ) {
-                        return '<a class="btn btn-light material-icons" href="{{ url("/")}}/proyects/'+data+'/items/'+data+'/tasks" >description</a>';
+                        return '<a class="btn btn-light material-icons" href="{{ url("/")}}/items/'+data+'/tasks" >description</a>';
                     },"width":"1%"},
                 ],
                 language: {

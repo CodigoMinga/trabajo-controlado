@@ -15,10 +15,6 @@
                 <input type="text" class="form-control" name="name" value="{{$advance->name}}" required>
             </div>
             <div class="form-group">
-                <label>Fecha de subida</label>
-                <input type="date" class="form-control" name="up_date"  value="{{$advance->up_date}}" required>
-            </div>
-            <div class="form-group">
                 <label>Personas</label>
                 <input type="text" class="form-control" name="people"  value="{{$advance->people}}" >
             </div>
