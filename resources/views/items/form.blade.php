@@ -8,7 +8,7 @@
             <i class="material-icons">add_box</i>Agregar Item
         @endif
     </h1>
-    <form class="col-10 pl-2" method="post" action="{{url('items/process')}}" id="form">
+    <form class="col-10 pl-2" method="post" action="{{url('/items/process')}}" id="form">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $item->id }}">
         

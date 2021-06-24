@@ -1,5 +1,6 @@
 @extends('templates.main')
 @section('content')
+<div class="container pt-3">
 <h1>
     @if ($advance->id)
         <i class="material-icons">edit</i>Editar Avance
@@ -28,7 +29,8 @@
             </div>
             <div class="form-group">
                 <label>Porcentaje</label>
-                <input type="text" class="form-control" name="percentage"  value="{{$advance->percentage}}" >
+                <input type="range" class="form-control" id="porcentaje" name="percentage" min="0%" max="100%" value="{{$advance->percentage}}" >
+                <span id="porc">0</span>
             </div>
             <div class="form-group">
                 <label>Comentario</label>
@@ -58,4 +60,17 @@
         </form>
 
     </div>
+    <script>
+        addEventListener('load',inicio,false);
+      
+        function inicio()
+        {
+          document.getElementById('porcentaje').addEventListener('mousemove',cambioTemperatura,false);
+        }
+      
+        function cambioTemperatura()
+        {    
+          document.getElementById('porc').innerHTML=document.getElementById('porcentaje').value;
+        }
+      </script>
 @stop
