@@ -42,7 +42,7 @@
                     { "data": "percentage","width":"25%"},
          
                     { data: "id", render : function ( data, type, row, meta ) {
-                        return '<a class="btn btn-light material-icons" href="{{ url("/")}}/items/'+data+'/tasks" >description</a>';
+                        return '<a class="btn btn-light material-icons" href="{{ url("/")}}/proyects/'+data+'/items/'+data+'/tasks/'+data+'" >description</a>';
                     },"width":"1%"},
                 ],
                 language: {

@@ -60,6 +60,7 @@ route::get('/tasks/add',                'TaskController@add')->name('tasks.add')
 route::get('/tasks/{task_id}',          'TaskController@details')->name('tasks.details');
 route::get('/tasks/{task_id}/delete',   'TaskController@delete')->name('tasks.delete');
 route::post('/tasks/process',           'TaskController@process')->name('tasks.process');
+route::get('proyects/{proyect_id}/items/{item_id}/tasks/{task_id}',    'TaskController@details');
 
 //Rutas avance
 route::get('/advances/list',               'AdvanceController@list')->name('advances.list');

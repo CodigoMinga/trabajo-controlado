@@ -32,12 +32,12 @@ class TaskController extends Controller
         return view('tasks.list',compact('tasks'));
     }
 
-public function add(){
-
-    $items = Item::all();
-    $task = new Task();
-    return view('tasks.form',compact('task','items'));
-}
+    public function add()
+    {
+        $items = Item::all();
+        $task = new Task();
+        return view('tasks.form',compact('task','items'));
+    }
 
 public function details($task_id){
     //Array de los clientes del Usuario
@@ -75,4 +75,6 @@ public function process(Request $request)
         $task->save();
         return redirect()->route('tasks.list')->with('success', 'Tarea eliminada correctamente');
     }
+
+
 }
