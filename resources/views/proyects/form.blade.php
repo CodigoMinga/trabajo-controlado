@@ -8,7 +8,7 @@
             <i class="material-icons">add_box</i>Agregar Proyecto
         @endif
     </h1>
-    <form method="post" action="{{url('proyects/process')}}" id="form">
+    <form method="post" action="{{url('proyects/'.$proyect->id.'/add/process')}}" id="form">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $proyect->id }}">
         <div class="form-group">
@@ -117,9 +117,9 @@
                 Guardar
             </button>
             @if ($proyect->id)
-            <a href="{{ url('/items/add')}}" class="btn btn-dark">
+            <a href="{{ url('/proyects/'.$proyect->id.'/items/list')}}" class="btn btn-dark">
                 <i class="material-icons">category</i>
-                Agregar Items
+                Lista de items
             </a>
 
             <a href="{{ url('/proyects') }}/{{ $proyect->id }}/delete" class="btn btn-danger">

@@ -45,6 +45,12 @@ route::get('/proyects/{proyect_id}','ProyectController@details')->name('proyects
 route::get('/proyects/{proyect_id}/delete','ProyectController@delete')->name('proyects.delete');
 route::post('/proyects/process', 'ProyectController@process');
 route::get('/proyects/{proyect_id}/items','ProyectController@assignitems');
+route::post('/proyects/{proyect_id}/add/process','ProyectController@process');
+
+//Rutas donde cada proyecto se le puede agregar items
+route::get('/proyects/{proyect_id}/items/{item_id}','ProyectController@assignitems');
+route::get('/proyects/{proyect_id}/items/add/process','ProyectController@assignitems');
+//route::post('/proyects/{proyect_id}/items/process','ItemController@process');
 
 //Rutas Items
 route::get('/items/list','ItemController@list')->name('items.list');
@@ -53,6 +59,7 @@ route::get('/items/{item_id}','ItemController@details')->name('items.details');
 route::get('/items/{item_id}/delete','ItemController@delete')->name('items.delete');
 route::post('/items/process', 'ItemController@process');
 route::get('proyects/{proyect_id}/items/{item_id}/tasks',    'ItemController@taskitem');
+
 
 //Rutas Tareas
 route::get('/tasks/list',               'TaskController@list')->name('tasks.list');
@@ -76,6 +83,7 @@ route::post('/advances/process',           'AdvanceController@process')->name('a
  route::get('/users/{user_id}',          'UserController@details')->name('users.details');
  route::get('/users/{user_id}/delete',   'UserController@delete')->name('users.delete');
  route::post('/users/process',           'UserController@process')->name('users.process');
+ route::post('/users/{user_id}/proyects/{proyect_id}/add/process',           'UserController@process')->name('users.process');
  //CAMBIAR CLAVE
  Route::post('/users/passwordchange/process','UserController@passwordchangeProcess');
 
