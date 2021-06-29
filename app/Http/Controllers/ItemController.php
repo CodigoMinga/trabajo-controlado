@@ -58,10 +58,14 @@ class ItemController extends Controller
     public function taskitem($item_id)
     {
        
-        $item = Item::findOrFail($item_id);
+       $item = Item::findOrFail($item_id);
+       $tasks = Task::all();
         //busca las tareas pertenecientes al item
-        $tasks = Task::where('item_id','=',$item->id)->get();
-
+        
+        foreach ($item->tasks as $key => $task) {
+            $item -> tasks;
+        }
+        
         return view('tasks.taskitem', compact('item','tasks'));
     }
 }

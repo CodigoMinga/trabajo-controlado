@@ -17,8 +17,8 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('description');
             $table->decimal('hhscheduled');
-            $table->decimal('hhreal');
-            $table->date('entrytime_item');
+            $table->decimal('hhreal')->nullable();
+            $table->date('entrytime_item')->nullable();
             $table->boolean('enabled')->default(1);
             $table->bigInteger('proyect_id')->unsigned();
             $table->foreign('proyect_id')->references('id')->on('proyects')->onUpdate('RESTRICT')->onDelete('RESTRICT');

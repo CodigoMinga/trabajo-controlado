@@ -58,7 +58,7 @@ route::get('/items/add','ItemController@add')->name('items.add');
 route::get('/items/{item_id}','ItemController@details')->name('items.details');
 route::get('/items/{item_id}/delete','ItemController@delete')->name('items.delete');
 route::post('/items/process', 'ItemController@process');
-route::get('proyects/{proyect_id}/items/{item_id}/tasks',    'ItemController@taskitem');
+route::get('proyects/{proyect_id}/items/{item_id}',    'ItemController@taskitem');
 
 
 //Rutas Tareas
