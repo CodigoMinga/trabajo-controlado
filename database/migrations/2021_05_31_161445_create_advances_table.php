@@ -16,7 +16,6 @@ class CreateAdvancesTable extends Migration
         Schema::create('advances', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('up_date');
             $table->string('people');
             $table->string('workedh');
             $table->string('percentage');

@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->time('entrytime');
+            $table->time('entrytime')->nullable();
             $table->string('percentage');
             $table->string('status')->default('0');
             $table->boolean('enabled')->default(1);

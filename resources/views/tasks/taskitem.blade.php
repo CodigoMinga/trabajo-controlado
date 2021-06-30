@@ -35,7 +35,7 @@
         $(document).ready(function() {
             $('#tabla').DataTable({
                 responsive: true,
-                "data": {!! json_encode($tasks->toArray()) !!},
+                "data": {!! json_encode($item->tasks->toArray()) !!},
                 "columns": [
                     { "data": "title","width":"30%"},
                     { "data": "entrytime","width":"25%"},
