@@ -19,7 +19,6 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Fecha de subida</th>
                     <th>Porcentaje</th>
                     <th>Acción</th>
                 </tr>
@@ -38,7 +37,6 @@
                 "data": {!! json_encode($advances->toArray()) !!},
                 "columns": [
                     { "data": "name","width":"30%"},
-                    { "data": "up_date","width":"25%"},
                     { "data": "percentage","width":"25%"},
          
                     { data: "id", render : function ( data, type, row, meta ) {

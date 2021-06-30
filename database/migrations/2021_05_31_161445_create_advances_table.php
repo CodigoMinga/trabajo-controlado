@@ -21,7 +21,7 @@ class CreateAdvancesTable extends Migration
             $table->string('percentage');
             $table->string('coment');
             $table->boolean('enabled')->default(1);
-            $table->longText('image')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->bigInteger('task_id')->unsigned();

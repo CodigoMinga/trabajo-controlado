@@ -4,11 +4,12 @@
 <h1>
     @if ($advance->id)
         <i class="material-icons">edit</i>Editar Avance
+        <img src="/storage/{{$advance->image}}" alt="{{$advance->name}}">
     @else
         <i class="material-icons">add_box</i>Agregar Avance
     @endif
 </h1>
-        <form class="col-10 pl-2" method="post" action="{{url('/advances/process')}}">
+        <form class="col-10 pl-2" method="post" enctype="multipart/form-data" action="{{url('/advances/process')}}">
             {{csrf_field()}}
             <input type="hidden" name="id" value="{{ $advance->id }}">
             <div class="form-group">
@@ -31,7 +32,11 @@
             <div class="form-group">
                 <label>Comentario</label>
                 <input type="text" class="form-control" name="coment"  value="{{$advance->coment}}" >
-            </div>
+            </div><br>
+            <div class="input-group mb-3">
+                <input type="file" name="image" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Guardar</label>
+              </div>
             <div class="form-group">
                 <label for="task_id">Tarea:</label>
                 <select name="task_id" id="task_id" class="form-control" required>
