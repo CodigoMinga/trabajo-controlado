@@ -26,17 +26,13 @@
             </div>
             <div class="form-group">
                 <label>Porcentaje</label>
-                <input type="range" class="form-control" id="porcentaje" name="percentage" min="0%" max="100%" value="{{$advance->percentage}}" >
-                <span id="porc">0</span>
-            </div>
+                <input type="text" class="form-control"  name="porcentage" value="{{$advance->percentage}}">
+                
+              </div>
             <div class="form-group">
                 <label>Comentario</label>
                 <input type="text" class="form-control" name="coment"  value="{{$advance->coment}}" >
-            </div><br>
-            <div class="input-group mb-3">
-                <input type="file" name="image" class="form-control" id="inputGroupFile02">
-                <label class="input-group-text" for="inputGroupFile02">Guardar</label>
-              </div>
+            </div>
             <div class="form-group">
                 <label for="task_id">Tarea:</label>
                 <select name="task_id" id="task_id" class="form-control" required>
@@ -59,8 +55,45 @@
             @endif
             </div>
         </form>
+        @if ($advance->id)
+        <div class="container pt-3">
+            <div class="box-body">
+                <h2 class="page-header">
+                    <i class="fa fa-pencil"></i> Registrar Fotos
+                </h2>
+                    <form method="POST" action="{{url('advances/'.$advance->id.'/add/images/Process')}}"  enctype="multipart/form-data">
+                   
+                        @csrf
+        
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <strong>Imagen:</strong>
+                            <input type="file" name="picture">
+                            
+                    </div>
+                    <div>
+                    <div class="form-group">
+                        <label for="description">Descripción: </label>
+                        <input required type="textarea" class="form-control" name="description" value="">
+                    
+                    </div>
+                    </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
+                </form>
+                
+            </div>
+            @endif
 
     </div>
+    <br>
+
+            
+    </div>
+
+ 
     <script>
         addEventListener('load',inicio,false);
       

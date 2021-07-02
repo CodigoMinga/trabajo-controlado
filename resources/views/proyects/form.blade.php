@@ -8,7 +8,7 @@
             <i class="material-icons">add_box</i>Agregar Proyecto
         @endif
     </h1>
-    <form method="post" action="{{url('proyects/'.$proyect->id.'/add/process')}}" id="form">
+    <form method="post" action="{{url('proyects/process')}}" id="form">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{ $proyect->id }}">
         <div class="form-group">

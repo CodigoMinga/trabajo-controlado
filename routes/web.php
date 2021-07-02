@@ -75,7 +75,8 @@ route::get('/advances/add',                'AdvanceController@add')->name('advan
 route::get('/advances/{advance_id}',          'AdvanceController@details')->name('advances.details');
 route::get('/advances/{advance_id}/delete',   'AdvanceController@delete')->name('advances.delete');
 route::post('/advances/process',           'AdvanceController@process')->name('advances.process');
-
+route::get('proyects/{proyect_id}/items/{item_id}/tasks/{task_id}/advances/{advance_id}',    'TaskController@details');
+route::get('advances/{advance_id}/add/image','AdvancesController@addimage');
  //USUARIOS
  route::get('/users/list',               'UserController@list')->name('users.list');
  route::get('/users/add',                'UserController@add')->name('users.add');
@@ -86,6 +87,8 @@ route::post('/advances/process',           'AdvanceController@process')->name('a
  route::post('/users/{user_id}/proyects/{proyect_id}/add/process',           'UserController@process')->name('users.process');
  //CAMBIAR CLAVE
  Route::post('/users/passwordchange/process','UserController@passwordchangeProcess');
+ //RUTA DE PICTURES
+ route::post('advancdes/{advance_id}/add/images/Process','PicturesController@imagesProcess');
 
  //LOGOUT
  route::get('/logout','MainController@logout');

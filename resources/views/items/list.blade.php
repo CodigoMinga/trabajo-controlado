@@ -10,7 +10,7 @@
     <div class="container pt-3">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Lista de Items</h1>
-            <a  href="{{ url('/') }}/items/add" class="btn btn-success">
+            <a  href="{{ url('/') }}/proyects/{proyect_id}/items/add" class="btn btn-success">
                 <i class="material-icons">add</i>
                 Agregar Items
             </a>

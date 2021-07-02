@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 
 class AdvanceController extends Controller
 {
+
+
+    public function addimage($advance_id){
+        $advancess = Advances::all();
+        return view('advances.addimage', compact('advance_id'));
+    }
     public function list(){
 
         $advances = Advance::all();

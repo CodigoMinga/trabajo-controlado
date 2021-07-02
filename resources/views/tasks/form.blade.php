@@ -51,6 +51,10 @@
                   Guardar
               </button>
             @if ($task->id)
+                <a  href="{{ url('/') }}/advances/list" class="btn btn-dark">
+                    <i class="material-icons">done_all</i>
+                    Avances
+                </a>
                 <a  href="{{ url('/') }}/tasks/{{$task->id}}/delete" class="btn btn-danger">
                     <i class="material-icons">clear</i>
                     Eliminar
